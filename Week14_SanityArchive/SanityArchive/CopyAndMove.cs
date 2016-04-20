@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace SanityArchive
 {
-    public class FileCopyAndMove
+    public class CopyAndMove
     {
         public void CopyFile(string sourcePath, string targetPath)
         {
