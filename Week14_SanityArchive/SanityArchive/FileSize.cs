@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows.Forms;
 
 namespace SanityArchive
 {
     public class FileSize
     {
-        public ListBox FileListBox { get; private set; }
-        public TextBox SizeTextBox { get; private set; }
+        public ListBox FileListBox { get; }
+        public TextBox SizeTextBox { get; }
         public string FilePath { get; private set; }
         public long SizeOfFile { get; private set; }
 
