@@ -45,6 +45,8 @@
             this.pathTextBox2 = new System.Windows.Forms.TextBox();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.fileSize_Textbox = new System.Windows.Forms.TextBox();
+            this.fileSize_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // DriverLabel
@@ -195,11 +197,29 @@
             this.label3.TabIndex = 22;
             this.label3.Text = "Search";
             // 
+            // fileSize_Textbox
+            // 
+            this.fileSize_Textbox.Location = new System.Drawing.Point(13, 359);
+            this.fileSize_Textbox.Name = "fileSize_Textbox";
+            this.fileSize_Textbox.Size = new System.Drawing.Size(68, 20);
+            this.fileSize_Textbox.TabIndex = 23;
+            // 
+            // fileSize_label
+            // 
+            this.fileSize_label.AutoSize = true;
+            this.fileSize_label.Location = new System.Drawing.Point(12, 343);
+            this.fileSize_label.Name = "fileSize_label";
+            this.fileSize_label.Size = new System.Drawing.Size(30, 13);
+            this.fileSize_label.TabIndex = 24;
+            this.fileSize_label.Text = "Size:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 407);
+            this.Controls.Add(this.fileSize_label);
+            this.Controls.Add(this.fileSize_Textbox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.pathTextBox2);
@@ -243,6 +263,8 @@
         private System.Windows.Forms.TextBox pathTextBox2;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox fileSize_Textbox;
+        private System.Windows.Forms.Label fileSize_label;
     }
 }
 
