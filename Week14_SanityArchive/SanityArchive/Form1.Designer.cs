@@ -73,6 +73,7 @@
             this.fileListBox.FormattingEnabled = true;
             this.fileListBox.Location = new System.Drawing.Point(95, 128);
             this.fileListBox.Name = "fileListBox";
+            this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.fileListBox.Size = new System.Drawing.Size(250, 251);
             this.fileListBox.TabIndex = 2;
             this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
