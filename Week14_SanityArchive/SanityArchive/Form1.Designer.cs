@@ -34,7 +34,7 @@
             this.compressButton = new System.Windows.Forms.Button();
             this.encryptionButton = new System.Windows.Forms.Button();
             this.driverLabel2 = new System.Windows.Forms.Label();
-            this.driverCombobox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.fileListBox2 = new System.Windows.Forms.ListBox();
             this.copyButton = new System.Windows.Forms.Button();
             this.moveButton = new System.Windows.Forms.Button();
@@ -64,6 +64,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(250, 21);
             this.comboBox1.TabIndex = 1;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // fileListBox
             // 
@@ -72,6 +73,7 @@
             this.fileListBox.Name = "fileListBox";
             this.fileListBox.Size = new System.Drawing.Size(250, 251);
             this.fileListBox.TabIndex = 2;
+            this.fileListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fileList_DoubleClick);
             // 
             // compressButton
             // 
@@ -101,13 +103,14 @@
             this.driverLabel2.TabIndex = 7;
             this.driverLabel2.Text = "Driver";
             // 
-            // driverCombobox2
+            // comboBox2
             // 
-            this.driverCombobox2.FormattingEnabled = true;
-            this.driverCombobox2.Location = new System.Drawing.Point(498, 50);
-            this.driverCombobox2.Name = "driverCombobox2";
-            this.driverCombobox2.Size = new System.Drawing.Size(268, 21);
-            this.driverCombobox2.TabIndex = 9;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(498, 50);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(268, 21);
+            this.comboBox2.TabIndex = 9;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // fileListBox2
             // 
@@ -116,6 +119,7 @@
             this.fileListBox2.Name = "fileListBox2";
             this.fileListBox2.Size = new System.Drawing.Size(268, 251);
             this.fileListBox2.TabIndex = 11;
+            this.fileListBox2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fileList2_DoubleClick);
             // 
             // copyButton
             // 
@@ -210,7 +214,7 @@
             this.Controls.Add(this.moveButton);
             this.Controls.Add(this.copyButton);
             this.Controls.Add(this.fileListBox2);
-            this.Controls.Add(this.driverCombobox2);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.driverLabel2);
             this.Controls.Add(this.encryptionButton);
             this.Controls.Add(this.compressButton);
@@ -232,7 +236,7 @@
         private System.Windows.Forms.Button compressButton;
         private System.Windows.Forms.Button encryptionButton;
         private System.Windows.Forms.Label driverLabel2;
-        private System.Windows.Forms.ComboBox driverCombobox2;
+        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ListBox fileListBox2;
         private System.Windows.Forms.Button copyButton;
         private System.Windows.Forms.Button moveButton;
