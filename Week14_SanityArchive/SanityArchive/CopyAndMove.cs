@@ -5,32 +5,41 @@ namespace SanityArchive
 {
     public class CopyAndMove
     {
-        public void CopyFile(string sourcePath, string targetPath)
-        {
-            string fileName = new FileInfo(sourcePath).Name;
-            string destFilePath = Path.Combine(targetPath, fileName);
+        private string _sourcePath;
+        private string _targetPath;
 
-            File.Copy(sourcePath, destFilePath, true);
+        public CopyAndMove(string sourcePath, string targetPath)
+        {
+            _sourcePath = sourcePath;
+            _targetPath = targetPath;
         }
 
-        public void CopyDirectory(string sourcePath, string targetPath)
+        public void CopyFile()
+        {
+            string fileName = Path.GetFileName(_sourcePath);
+            string destFilePath = Path.Combine(_targetPath, fileName);
+
+            File.Copy(_sourcePath, destFilePath, true);
+        }
+
+        public void CopyDirectory()
         {
             string fileName;
             string destFilePath;
 
-            if (!Directory.Exists(targetPath))
+            if (!Directory.Exists(_targetPath))
             {
-                Directory.CreateDirectory(targetPath);
+                Directory.CreateDirectory(_targetPath);
             }
 
-            if (Directory.Exists(sourcePath))
+            if (Directory.Exists(_sourcePath))
             {
-                string[] files = Directory.GetFiles(sourcePath);
+                string[] files = Directory.GetFiles(_sourcePath);
 
                 foreach (string s in files)
                 {
                     fileName = Path.GetFileName(s);
-                    destFilePath = Path.Combine(targetPath, fileName);
+                    destFilePath = Path.Combine(_targetPath, fileName);
                     File.Copy(s, destFilePath, true);
                 }
             }
