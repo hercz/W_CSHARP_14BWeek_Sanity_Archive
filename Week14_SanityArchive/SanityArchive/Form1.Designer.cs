@@ -75,6 +75,7 @@
             this.fileListBox.Name = "fileListBox";
             this.fileListBox.Size = new System.Drawing.Size(250, 251);
             this.fileListBox.TabIndex = 2;
+            this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
             this.fileListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fileList_DoubleClick);
             // 
             // compressButton

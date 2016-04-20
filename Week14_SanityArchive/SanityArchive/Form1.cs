@@ -7,12 +7,12 @@ namespace SanityArchive
     public partial class Form1 : Form
 
     {
-        public FileSize SizeOfFile { get; }
+        public FileSize SizeOfFile { get; set; }
 
         public Form1()
         {
-
             InitializeComponent();
+            SizeOfFile = new FileSize(fileListBox, fileSize_Textbox);
             getDrives();
         }
         Archiving ar = new Archiving();
@@ -178,5 +178,9 @@ namespace SanityArchive
     */
         }
 
+        private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SizeOfFile.FillFileSizeTextBox();
+        }
     }
 }

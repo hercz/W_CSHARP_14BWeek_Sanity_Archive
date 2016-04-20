@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Archiving.cs" />
     <Compile Include="CopyAndMove.cs" />
+    <Compile Include="FileSize.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
