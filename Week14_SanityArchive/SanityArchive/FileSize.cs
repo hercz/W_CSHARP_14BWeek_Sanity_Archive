@@ -28,26 +28,35 @@ namespace SanityArchive
             string path = FileListBox.SelectedItem.ToString();
             if (File.Exists(path))
             {
-                FilePath = path;
-                FileInfo file = new FileInfo(FilePath);
-                SizeOfFile = file.Length;
-                SizeTextBox.Text = SizeOfFile.ToString();
+                GetFileSize(path);
             }
             else
             {
-                SizeTextBox.Clear();    
+                SizeTextBox.Clear();
             }
-            
-            
         }
-   
-        public void GetFilePath()
+
+        private void GetFileSize(string path)
         {
-            string path = FileListBox.SelectedIndex.ToString();
-            if (File.Exists(path))
+            FilePath = path;
+            FileInfo file = new FileInfo(FilePath);
+            SizeOfFile = file.Length;
+            if (SizeOfFile < 1024)
             {
-                FilePath = path;
+                SizeTextBox.Text = SizeOfFile + @" byte";
             }
+            else if (SizeOfFile < 1048576)
+            {
+                SizeOfFile = SizeOfFile/1024;
+                SizeTextBox.Text = SizeOfFile + @" KB";
+            }
+            else
+            {
+                SizeOfFile = SizeOfFile / 1024 / 1024;
+                SizeTextBox.Text = SizeOfFile + @" MB";
+            }
+
+
         }
     }
 }
