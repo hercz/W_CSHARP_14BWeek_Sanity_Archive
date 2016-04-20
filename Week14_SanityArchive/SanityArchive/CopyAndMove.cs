@@ -48,5 +48,15 @@ namespace SanityArchive
                 MessageBox.Show("Source path does not exist!");
             }
         }
+
+        public void MoveFile()
+        {
+            File.Move(_sourcePath, _targetPath);
+        }
+
+        public void MoveDirectory()
+        {
+            Directory.Move(_sourcePath, _targetPath);
+        }
     }
 }
