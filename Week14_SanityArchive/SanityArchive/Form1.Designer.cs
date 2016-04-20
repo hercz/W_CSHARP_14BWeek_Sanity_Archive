@@ -77,16 +77,17 @@
             // 
             // compressButton
             // 
-            this.compressButton.Location = new System.Drawing.Point(375, 344);
+            this.compressButton.Location = new System.Drawing.Point(375, 301);
             this.compressButton.Name = "compressButton";
             this.compressButton.Size = new System.Drawing.Size(94, 35);
             this.compressButton.TabIndex = 3;
             this.compressButton.Text = "Compress";
             this.compressButton.UseVisualStyleBackColor = true;
+            this.compressButton.Click += new System.EventHandler(this.compressButton_Click);
             // 
             // encryptionButton
             // 
-            this.encryptionButton.Location = new System.Drawing.Point(375, 286);
+            this.encryptionButton.Location = new System.Drawing.Point(375, 258);
             this.encryptionButton.Name = "encryptionButton";
             this.encryptionButton.Size = new System.Drawing.Size(94, 37);
             this.encryptionButton.TabIndex = 4;
@@ -123,7 +124,7 @@
             // 
             // copyButton
             // 
-            this.copyButton.Location = new System.Drawing.Point(375, 234);
+            this.copyButton.Location = new System.Drawing.Point(375, 219);
             this.copyButton.Name = "copyButton";
             this.copyButton.Size = new System.Drawing.Size(94, 33);
             this.copyButton.TabIndex = 14;
@@ -141,7 +142,7 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(375, 128);
+            this.editButton.Location = new System.Drawing.Point(375, 141);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(94, 33);
             this.editButton.TabIndex = 16;
