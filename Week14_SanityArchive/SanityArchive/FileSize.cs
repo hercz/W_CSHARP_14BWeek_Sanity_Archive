@@ -22,7 +22,6 @@ namespace SanityArchive
             SizeTextBox = sizeTextBox;
         }
 
-
         public void FillFileSizeTextBox()
         {
             SizeTextBox.Text = SizeOfFile.ToString(CultureInfo.CurrentCulture);
