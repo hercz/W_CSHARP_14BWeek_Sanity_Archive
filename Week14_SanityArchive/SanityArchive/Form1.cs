@@ -5,9 +5,13 @@ using System.Windows.Forms;
 namespace SanityArchive
 {
     public partial class Form1 : Form
+
     {
+        public FileSize SizeOfFile { get; }
+
         public Form1()
         {
+
             InitializeComponent();
             getDrives();
         }
@@ -23,8 +27,6 @@ namespace SanityArchive
                 comboBox2.Items.Add(str);
             }
         }
-
-
 
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
