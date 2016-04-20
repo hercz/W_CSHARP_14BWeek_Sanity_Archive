@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SanityArchive
@@ -18,8 +11,7 @@ namespace SanityArchive
             InitializeComponent();
             getDrives();
         }
-
-
+        Archiving ar = new Archiving();
 
         void getDrives()
         {
@@ -152,5 +144,37 @@ namespace SanityArchive
 
             }
         }
+
+        private void compressButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            string path = string.Empty;
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                path = fbd.SelectedPath;
+            }
+            DirectoryInfo dInfo = new DirectoryInfo(path);
+            foreach (FileInfo fInfo in dInfo.GetFiles())
+            {
+                ar.Compress(fInfo);
+            }
+
+            /*
+            DECOMPRESS
+
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            string path = string.Empty;
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                path = fbd.SelectedPath;
+            }
+            DirectoryInfo dInfo = new DirectoryInfo(path);
+            foreach (FileInfo fInfo in dInfo.GetFiles())
+            {
+                ar.Decompress(fInfo);
+            }
+    */
+        }
+
     }
 }
