@@ -15,6 +15,16 @@ namespace SanityArchive
         public AttributeEditorForm()
         {
             InitializeComponent();
+            //Form1 mainForm = new Form1();
+            //textBoxFileName.Text = mainForm.fileListBox.SelectedItem.ToString();
         }
+
+        public string TextBoxValue
+        {
+            get { return textBoxFileName.Text; }
+            set { textBoxFileName.Text = value; }
+        }
+
+
     }
 }

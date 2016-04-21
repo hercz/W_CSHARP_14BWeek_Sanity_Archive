@@ -194,6 +194,7 @@ namespace SanityArchive
         private void editButton_Click(object sender, EventArgs e)
         {
             AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
+            attributeEditorForm.TextBoxValue = this.fileListBox.SelectedItem.ToString();
             attributeEditorForm.ShowDialog();
         }
     }
