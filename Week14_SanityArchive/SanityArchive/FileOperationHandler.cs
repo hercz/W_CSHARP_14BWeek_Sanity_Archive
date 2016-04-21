@@ -38,7 +38,7 @@ namespace SanityArchive
             PrimaryPathTextBox.Text = CurrentPath;
             ShowDirsAndTexts();
         }
-        private void ShowDirsAndTexts()
+        public void ShowDirsAndTexts()
         {
             try
             {
