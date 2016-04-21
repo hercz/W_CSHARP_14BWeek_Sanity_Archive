@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing.Text;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace SanityArchive
@@ -15,7 +17,8 @@ namespace SanityArchive
             SizeOfFile = new FileSize(fileListBox, fileSize_Textbox);
             getDrives();
         }
-        Archiving ar = new Archiving();
+        private Archiving ar = new Archiving();
+        private string source;
 
         void getDrives()
         {
@@ -149,33 +152,38 @@ namespace SanityArchive
 
         private void compressButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            string path = string.Empty;
-            if (fbd.ShowDialog() == DialogResult.OK)
+            if (fileListBox.SelectedItem.ToString().EndsWith(".gz"))
             {
-                path = fbd.SelectedPath;
-            }
-            DirectoryInfo dInfo = new DirectoryInfo(path);
-            foreach (FileInfo fInfo in dInfo.GetFiles())
-            {
-                ar.Compress(fInfo);
+                compressButton.Text = "Decompessing";
+                FolderBrowserDialog fbd = new FolderBrowserDialog();
+                string path = string.Empty;
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    path = fbd.SelectedPath;
+                }
+                DirectoryInfo dInfo = new DirectoryInfo(path);
+                foreach (FileInfo fInfo in dInfo.GetFiles())
+                {
+                    ar.Decompress(fInfo);
+                    MessageBox.Show("Decompressing Finished!");
+                }
             }
 
-            /*
-            DECOMPRESS
-
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            string path = string.Empty;
-            if (fbd.ShowDialog() == DialogResult.OK)
+            else
             {
-                path = fbd.SelectedPath;
+                FolderBrowserDialog fbd = new FolderBrowserDialog();
+                string path = string.Empty;
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    path = fbd.SelectedPath;
+                }
+                DirectoryInfo dInfo = new DirectoryInfo(path);
+                foreach (FileInfo fInfo in dInfo.GetFiles())
+                {
+                    ar.Compress(fInfo);
+                    MessageBox.Show("Compression Finished!");
+                }
             }
-            DirectoryInfo dInfo = new DirectoryInfo(path);
-            foreach (FileInfo fInfo in dInfo.GetFiles())
-            {
-                ar.Decompress(fInfo);
-            }
-    */
         }
 
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
