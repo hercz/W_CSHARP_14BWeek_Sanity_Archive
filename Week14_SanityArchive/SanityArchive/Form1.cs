@@ -21,103 +21,31 @@ namespace SanityArchive
             FileOperationHandler.FillSecondaryDriveComboBox();
         }
         private Archiving ar = new Archiving();
-        private string source;
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             FileOperationHandler.FillPrimaryFileBox();
-
         }
-
-
-
 
 
         private void fileList_DoubleClick(object sender, MouseEventArgs e)
         {
-            getFiles(fileListBox.SelectedItem.ToString(), "O");
+            
         }
-
-
-
-
-
-
-        public void getFiles(string selectedFolder, string filemode)
-        {
-            try
-            {
-                string[] directoryList = Directory.GetDirectories(@selectedFolder);
-                string[] fileList = Directory.GetFiles(@selectedFolder);
-                pathTextBox1.Text = @selectedFolder;
-                fileListBox.Items.Clear();
-                foreach (var directory in directoryList)
-                {
-                    fileListBox.Items.Add(directory);
-                }
-                foreach (var file in fileList)
-                {
-                    fileListBox.Items.Add(file);
-                }
-            }
-            catch (Exception)
-            {
-                if (filemode.Equals("O"))
-                {
-                    MessageBox.Show("This is not directory.");
-                }
-
-            }
-        }
-
-
-
 
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             FileOperationHandler.FillSecondaryFileBox();
-
         }
 
 
 
         private void fileList2_DoubleClick(object sender, MouseEventArgs e)
         {
-            getFiles2(fileListBox2.SelectedItem.ToString(), "O");
-        }
-
-
-
-
-        public void getFiles2(string selectedFolder, string filemode)
-        {
-            try
-            {
-                string[] directoryList = Directory.GetDirectories(@selectedFolder);
-                string[] fileList = Directory.GetFiles(@selectedFolder);
-                pathTextBox2.Text = @selectedFolder;
-                fileListBox2.Items.Clear();
-                foreach (var directory in directoryList)
-                {
-                    fileListBox2.Items.Add(directory);
-                }
-                foreach (var file in fileList)
-                {
-                    fileListBox2.Items.Add(file);
-                }
-            }
-            catch (Exception)
-            {
-                if (filemode.Equals("O"))
-                {
-                    MessageBox.Show("This is not directory.");
-                }
-
-            }
-        }
+            
+        }               
 
         private void compressButton_Click(object sender, EventArgs e)
         {
@@ -137,7 +65,6 @@ namespace SanityArchive
                     MessageBox.Show("Decompressing Finished!");
                 }
             }
-
             else
             {
                 FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -167,7 +94,6 @@ namespace SanityArchive
             {
                 encryptionButton.Text = "Encryption";
             }
-
             SizeOfFile.FillFileSizeTextBox();
         }
 
@@ -182,8 +108,7 @@ namespace SanityArchive
             {
                 attributeEditorForm.TextBoxValue = fileListBox.SelectedItem.ToString();
                 attributeEditorForm.ShowDialog();
-            }
-            
+            }            
         }
 
         private void encryptionButton_Click(object sender, EventArgs e)
@@ -194,18 +119,11 @@ namespace SanityArchive
             if (encryptionButton.Text.Equals("Encryption")) 
             {
                encrypOrDecrypt.EncryptFile(@selectedItem, @selectedItem + ".enc");
-
             }
             else
             {
                 encrypOrDecrypt.DecryptFile(@selectedItem, @selectedItem.Substring(0, (selectedItem.Length - 4 )));
             }
-
-
-
-
-        }
-
-       
+        }      
     }
 }
