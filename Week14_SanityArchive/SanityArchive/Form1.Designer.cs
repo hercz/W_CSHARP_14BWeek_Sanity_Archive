@@ -97,6 +97,7 @@
             this.encryptionButton.TabIndex = 4;
             this.encryptionButton.Text = "Encryption";
             this.encryptionButton.UseVisualStyleBackColor = true;
+            this.encryptionButton.Click += new System.EventHandler(this.encryptionButton_Click);
             // 
             // driverLabel2
             // 
