@@ -31,19 +31,21 @@ namespace SanityArchive
 
         private void fileList_DoubleClick(object sender, MouseEventArgs e)
         {
-            FileOperationHandler.Open();
+            FileOperationHandler.OpenPrimaryTextBox();
         }
 
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             FileOperationHandler.FillSecondaryFileBox();
+            FileOperationHandler.SetSecondaryPath();
         }
 
 
 
         private void fileList2_DoubleClick(object sender, MouseEventArgs e)
         {
+            FileOperationHandler.OpenSecondaryTextBox();
             
         }               
 
