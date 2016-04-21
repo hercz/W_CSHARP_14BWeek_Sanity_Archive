@@ -8,7 +8,8 @@ namespace SanityArchive
         public ListBox FileListBox { get; }
         public TextBox SizeTextBox { get; }
         public string FilePath { get; private set; }
-        public long SizeOfFile { get; private set; }
+        public long SizeOfFileInByte { get; private set; }
+        public double SizeOfFileInKbMb { get; private set; }
 
         public FileSize(ListBox fileListBox, TextBox sizeTextBox)
         {
@@ -34,20 +35,20 @@ namespace SanityArchive
         {
             FilePath = path;
             FileInfo file = new FileInfo(FilePath);
-            SizeOfFile = file.Length;
-            if (SizeOfFile < 1024)
+            SizeOfFileInByte = file.Length;
+            if (SizeOfFileInByte < 1024)
             {
-                SizeTextBox.Text = SizeOfFile + @" byte";
+                SizeTextBox.Text = SizeOfFileInByte + @" byte";
             }
-            else if (SizeOfFile < 1048576)
+            else if (SizeOfFileInByte < 1048576)
             {
-                SizeOfFile = SizeOfFile/1024;
-                SizeTextBox.Text = SizeOfFile + @" KB";
+                SizeOfFileInKbMb = SizeOfFileInByte / 1024f;
+                SizeTextBox.Text = SizeOfFileInKbMb + @" KB";
             }
             else
             {
-                SizeOfFile = SizeOfFile / 1024 / 1024;
-                SizeTextBox.Text = SizeOfFile + @" MB";
+                SizeOfFileInKbMb = SizeOfFileInByte / 1024f / 1024f;
+                SizeTextBox.Text = SizeOfFileInKbMb + @" MB";
             }
 
 
