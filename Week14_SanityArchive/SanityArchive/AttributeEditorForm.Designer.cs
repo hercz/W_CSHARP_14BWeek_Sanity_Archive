@@ -34,12 +34,13 @@
             this.checkBoxReadOnly = new System.Windows.Forms.CheckBox();
             this.checkBoxHidden = new System.Windows.Forms.CheckBox();
             this.saveButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 12);
+            this.label1.Location = new System.Drawing.Point(13, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 0;
@@ -58,13 +59,14 @@
             // 
             this.textBoxFileName.Location = new System.Drawing.Point(88, 5);
             this.textBoxFileName.Name = "textBoxFileName";
-            this.textBoxFileName.Size = new System.Drawing.Size(274, 20);
+            this.textBoxFileName.Size = new System.Drawing.Size(308, 20);
             this.textBoxFileName.TabIndex = 2;
+            this.textBoxFileName.TextChanged += new System.EventHandler(this.textBoxFileName_TextChanged);
             // 
             // checkBoxReadOnly
             // 
             this.checkBoxReadOnly.AutoSize = true;
-            this.checkBoxReadOnly.Location = new System.Drawing.Point(88, 44);
+            this.checkBoxReadOnly.Location = new System.Drawing.Point(88, 43);
             this.checkBoxReadOnly.Name = "checkBoxReadOnly";
             this.checkBoxReadOnly.Size = new System.Drawing.Size(76, 17);
             this.checkBoxReadOnly.TabIndex = 3;
@@ -83,18 +85,30 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(287, 38);
+            this.saveButton.Location = new System.Drawing.Point(240, 40);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 5;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(321, 40);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 6;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // AttributeEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 78);
+            this.ClientSize = new System.Drawing.Size(414, 74);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.checkBoxHidden);
             this.Controls.Add(this.checkBoxReadOnly);
@@ -116,5 +130,6 @@
         private System.Windows.Forms.CheckBox checkBoxReadOnly;
         private System.Windows.Forms.CheckBox checkBoxHidden;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

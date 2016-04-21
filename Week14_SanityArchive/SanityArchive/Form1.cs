@@ -207,7 +207,7 @@ namespace SanityArchive
             AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
             if (fileListBox.SelectedIndex == -1)
             {
-                MessageBox.Show("You need to select a file first!");
+                MessageBox.Show("Please select a file from the list first!");
             }
             else
             {
