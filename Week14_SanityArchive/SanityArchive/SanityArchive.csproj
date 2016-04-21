@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archiving.cs" />
+    <Compile Include="AttributeEditor.cs" />
     <Compile Include="AttributeEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
