@@ -248,6 +248,7 @@
             this.Controls.Add(this.DriverLabel);
             this.Name = "SanityArchive";
             this.Text = "Sanity archive";
+            this.Load += new System.EventHandler(this.SanityArchive_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

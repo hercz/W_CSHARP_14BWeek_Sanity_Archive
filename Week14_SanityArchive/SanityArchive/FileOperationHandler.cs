@@ -19,6 +19,15 @@ namespace SanityArchive
         public ListBox SecondaryFileBox { get; set; }
 
         public string CurrentPath { get; set; }
+        public DriveInfo[] AllDrives { get; } = DriveInfo.GetDrives();
+        private static string[] Drives
+        {
+            get
+            {
+                string[] drives = Directory.GetLogicalDrives();
+                return drives;
+            }
+        }
 
 
         public FileOperationHandler(ComboBox pdComboBox, ComboBox sdComboBox, TextBox ppTextBox, TextBox spTextBox,
@@ -65,155 +74,45 @@ namespace SanityArchive
             }
         }
 
-        public void OpenPrimaryTextBox()
+        public void SetPathTextBoxFromComboBox(ComboBox selectedDrive, TextBox pathTextBox)
         {
-            CurrentPath = PrimaryPathTextBox.Text + PrimaryFileBox.SelectedItem + "\\";
-            PrimaryFileBox.Items.Clear();
-            PrimaryPathTextBox.Text = CurrentPath;
-            ShowDirsAndTexts1();
+            pathTextBox.Text = selectedDrive.SelectedItem.ToString();
         }
 
-        public void OpenSecondaryTextBox()
+        public void FillComboBox(ComboBox driveComboBox)
         {
-            CurrentPath = SecondaryPathTextBox.Text + SecondaryFileBox.SelectedItem + "\\";
-            SecondaryFileBox.Items.Clear();
-            SecondaryPathTextBox.Text = CurrentPath;
-            ShowDirsAndTexts2();
+            foreach (var drive in Drives)
+            {
+                driveComboBox.Items.Add(drive);
+            }
         }
 
-        public void ShowDirsAndTexts1()
+        public void FillFileListBoxFromComboBox(ListBox fileListBox)
         {
             try
             {
-                string[] dirs = Directory.GetDirectories(CurrentPath);
+                string[] dirs = Directory.GetDirectories(Drives[PrimaryDriveComboBox.SelectedIndex]);
 
                 foreach (var dir in dirs)
                 {
                     string dirName = Path.GetFileName(dir);
-                    PrimaryFileBox.Items.Add(dirName);
+                    fileListBox.Items.Add(dirName);
                 }
 
-                string[] files = Directory.GetFiles(CurrentPath);
+                string[] files = Directory.GetFiles(Drives[PrimaryDriveComboBox.SelectedIndex]);
                 foreach (var file in files)
                 {
                     string fileName = Path.GetFileName(file);
-                    PrimaryFileBox.Items.Add(fileName);
+                    fileListBox.Items.Add(fileName);
                 }
             }
             catch (Exception er)
             {
-                PrimaryFileBox.Items.Clear();
-                MessageBox.Show(er.Message);
-            }
-        }
-        private void ShowDirsAndTexts2()
-        {
-            try
-            {
-                string[] dirs = Directory.GetDirectories(CurrentPath);
-
-                foreach (var dir in dirs)
-                {
-                    string dirName = Path.GetFileName(dir);
-                    SecondaryFileBox.Items.Add(dirName);
-                }
-
-                string[] files = Directory.GetFiles(CurrentPath);
-                foreach (var file in files)
-                {
-                    string fileName = Path.GetFileName(file);
-                    SecondaryFileBox.Items.Add(fileName);
-                }
-            }
-            catch (Exception er)
-            {
-                SecondaryFileBox.Items.Clear();
+                fileListBox.Items.Clear();
                 MessageBox.Show(er.Message);
             }
         }
 
-        public void SetPrimaryPath()
-        {
-            PrimaryPathTextBox.Text = PrimaryDriveComboBox.SelectedItem.ToString();
-        }
-
-        public void SetSecondaryPath()
-        {
-            SecondaryPathTextBox.Text = SecondaryDriveComboBox.SelectedItem.ToString();
-        }
-
-        public void FillPrimaryDriveComboBox()
-        {
-            string[] drives = Directory.GetLogicalDrives();
-            foreach (var drive in drives)
-            {
-                PrimaryDriveComboBox.Items.Add(drive);
-            }
-        }
-
-        public void FillPrimaryFileBox()
-        {
-            string[] drives = Directory.GetLogicalDrives();
-
-            try
-            {
-                string[] dirs = Directory.GetDirectories(drives[PrimaryDriveComboBox.SelectedIndex]);
-
-                foreach (var dir in dirs)
-                {
-                    string dirName = Path.GetFileName(dir);
-                    PrimaryFileBox.Items.Add(dirName);
-                }
-
-                string[] files = Directory.GetFiles(drives[PrimaryDriveComboBox.SelectedIndex]);
-                foreach (var file in files)
-                {
-                    string fileName = Path.GetFileName(file);
-                    PrimaryFileBox.Items.Add(fileName);
-                }
-            }
-            catch (Exception er)
-            {
-                PrimaryFileBox.Items.Clear();
-                MessageBox.Show(er.Message);
-            }
-
-        }
-        public void FillSecondaryDriveComboBox()
-        {
-            string[] drives = Directory.GetLogicalDrives();
-            foreach (var drive in drives)
-            {
-                SecondaryDriveComboBox.Items.Add(drive);
-            }
-        }
-        public void FillSecondaryFileBox()
-        {
-            string[] drives = Directory.GetLogicalDrives();
-
-            try
-            {
-                string[] dirs = Directory.GetDirectories(drives[SecondaryDriveComboBox.SelectedIndex]);
-
-                foreach (var dir in dirs)
-                {
-                    string dirName = Path.GetFileName(dir);
-                    SecondaryFileBox.Items.Add(dirName);
-                }
-
-                string[] files = Directory.GetFiles(drives[SecondaryDriveComboBox.SelectedIndex]);
-                foreach (var file in files)
-                {
-                    string fileName = Path.GetFileName(file);
-                    SecondaryFileBox.Items.Add(fileName);
-                }
-            }
-            catch (Exception er)
-            {
-                SecondaryFileBox.Items.Clear();
-                MessageBox.Show(er.Message);
-            }
-        }
     }
 }
 

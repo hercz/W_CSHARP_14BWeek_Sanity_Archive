@@ -10,26 +10,31 @@ namespace SanityArchive
     {
         public FileSize SizeOfFile { get; set; }
         public FileOperationHandler FileOperationHandler { get; set; }
+        private Archiving ar = new Archiving();
 
         public SanityArchive()
         {
-            InitializeComponent();
+            InitializeComponent();           
+        }
+
+
+        private void SanityArchive_Load(object sender, EventArgs e)
+        {
             SizeOfFile = new FileSize(primaryFileListBox, fileSize_Textbox);
             FileOperationHandler = new FileOperationHandler(primaryDriverComboBox, secondaryDriveComboBox, primaryPathTextBox, secondaryPathTextBox, primaryFileListBox, SecondaryFileListBox);
-            FileOperationHandler.FillPrimaryDriveComboBox();
-            FileOperationHandler.FillSecondaryDriveComboBox();
+            FileOperationHandler.FillComboBox(primaryDriverComboBox);
+            FileOperationHandler.FillComboBox(secondaryDriveComboBox);
         }
-        private Archiving ar = new Archiving();
 
         private void PrimaryDriveComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FileOperationHandler.FillPrimaryFileBox();
-            FileOperationHandler.SetPrimaryPath();
+            FileOperationHandler.FillFileListBoxFromComboBox(primaryFileListBox);
+            FileOperationHandler.SetPathTextBoxFromComboBox(primaryDriverComboBox, primaryPathTextBox);
         }
         private void secondaryDriveComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FileOperationHandler.FillSecondaryFileBox();
-            FileOperationHandler.SetSecondaryPath();
+            FileOperationHandler.FillFileListBoxFromComboBox(SecondaryFileListBox);
+            FileOperationHandler.SetPathTextBoxFromComboBox(secondaryDriveComboBox, secondaryPathTextBox); ;
         }
 
 
@@ -119,15 +124,17 @@ namespace SanityArchive
             {
                 encrypOrDecrypt.EncryptFile(@selectedItem, @selectedItem + ".enc");
                 primaryFileListBox.Items.Clear();
-                FileOperationHandler.ShowDirsAndTexts1();
+                FileOperationHandler.ShowDirsAndFiles(primaryFileListBox);
 
             }
             else
             {
                 encrypOrDecrypt.DecryptFile(@selectedItem, @selectedItem.Substring(0, (selectedItem.Length - 4)));
                 primaryFileListBox.Items.Clear();
-                FileOperationHandler.ShowDirsAndTexts1();
+                FileOperationHandler.ShowDirsAndFiles(primaryFileListBox);
             }
         }
+
+
     }
 }
