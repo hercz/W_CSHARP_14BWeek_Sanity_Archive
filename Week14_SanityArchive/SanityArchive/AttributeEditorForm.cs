@@ -16,5 +16,13 @@ namespace SanityArchive
         {
             InitializeComponent();
         }
+
+        public string TextBoxValue
+        {
+            get { return textBoxFileName.Text; }
+            set { textBoxFileName.Text = value; }
+        }
+
+
     }
 }

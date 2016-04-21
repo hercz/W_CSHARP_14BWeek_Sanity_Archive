@@ -188,13 +188,55 @@ namespace SanityArchive
 
         private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string selectedItem = fileListBox.SelectedItem.ToString().ToLower();
+
+            if (selectedItem.EndsWith(".enc"))
+            {
+                encryptionButton.Text = "Decryption";
+            }
+             else
+            {
+                encryptionButton.Text = "Encryption";
+            }
+
             SizeOfFile.FillFileSizeTextBox();
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
             AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
-            attributeEditorForm.ShowDialog();
+            if (fileListBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("You need to select a file first!");
+            }
+            else
+            {
+                attributeEditorForm.TextBoxValue = fileListBox.SelectedItem.ToString();
+                attributeEditorForm.ShowDialog();
+            }
+            
         }
+
+        private void encryptionButton_Click(object sender, EventArgs e)
+        {
+            string selectedItem = fileListBox.SelectedItem.ToString();
+            EncryptionAndDecryption encrypOrDecrypt = new EncryptionAndDecryption();
+
+            if (encryptionButton.Text.Equals("Encryption")) 
+            {
+               encrypOrDecrypt.EncryptFile(@selectedItem, @selectedItem + ".enc");
+
+            }
+            else
+            {
+                encrypOrDecrypt.DecryptFile(@selectedItem, @selectedItem.Substring(0, (selectedItem.Length - 4 )));
+            }
+
+
+
+
+        }
+
+       
     }
 }

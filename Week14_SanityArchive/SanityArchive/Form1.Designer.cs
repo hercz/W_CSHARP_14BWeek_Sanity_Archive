@@ -97,6 +97,7 @@
             this.encryptionButton.TabIndex = 4;
             this.encryptionButton.Text = "Encryption";
             this.encryptionButton.UseVisualStyleBackColor = true;
+            this.encryptionButton.Click += new System.EventHandler(this.encryptionButton_Click);
             // 
             // driverLabel2
             // 
@@ -256,7 +257,7 @@
 
         private System.Windows.Forms.Label DriverLabel;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ListBox fileListBox;
+        public System.Windows.Forms.ListBox fileListBox;
         private System.Windows.Forms.Button compressButton;
         private System.Windows.Forms.Button encryptionButton;
         private System.Windows.Forms.Label driverLabel2;

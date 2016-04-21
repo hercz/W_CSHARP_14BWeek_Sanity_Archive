@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archiving.cs" />
+    <Compile Include="AttributeEditor.cs" />
     <Compile Include="AttributeEditorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +71,7 @@
       <DependentUpon>AttributeEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CopyAndMove.cs" />
+    <Compile Include="EncryptionAndDecryption.cs" />
     <Compile Include="FileSize.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -119,6 +122,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
