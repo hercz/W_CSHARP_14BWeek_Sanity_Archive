@@ -10,44 +10,37 @@ namespace SanityArchive
 
     {
         public FileSize SizeOfFile { get; set; }
+        public FileOperationHandler FileOperationHandler { get; set; }
 
         public Form1()
         {
             InitializeComponent();
             SizeOfFile = new FileSize(fileListBox, fileSize_Textbox);
-            getDrives();
+            FileOperationHandler = new FileOperationHandler(comboBox1,comboBox2,pathTextBox1,pathTextBox2,fileListBox,fileListBox2);
+            FileOperationHandler.FillPrimaryDriveComboBox();
         }
         private Archiving ar = new Archiving();
         private string source;
 
-        void getDrives()
-        {
-            string[] drives = System.IO.Directory.GetLogicalDrives();
-
-            foreach (string str in drives)
-            {
-                comboBox1.Items.Add(str);
-                comboBox2.Items.Add(str);
-            }
-        }
-
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                fileListBox.Items.Clear();
-                pathTextBox1.Text = comboBox1.Text;
-                string[] directoryList = Directory.GetDirectories(pathTextBox1.Text);
-                foreach (string str in directoryList)
-                {
-                    fileListBox.Items.Add(str);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Not existed driver!");
-            }
+            
+            FileOperationHandler.FillPrimaryFileBox();
+
+            //try
+            //{
+            //    fileListBox.Items.Clear();
+            //    pathTextBox1.Text = comboBox1.Text;
+            //    string[] directoryList = Directory.GetDirectories(pathTextBox1.Text);
+            //    foreach (string str in directoryList)
+            //    {
+            //        fileListBox.Items.Add(str);
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Not existed driver!");
+            //}
         }
 
 
