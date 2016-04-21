@@ -11,8 +11,8 @@ namespace SanityArchive
     {
         public void FileRenamer()
         {
-            Form1 mainForm = new Form1();
-            string fileToRename = mainForm.fileListBox.SelectedItem.ToString();
+            SanityArchive mainForm = new SanityArchive();
+            string fileToRename = mainForm.primaryFileListBox.SelectedItem.ToString();
             
             FileStream originalFile = File.Create(fileToRename);
             //File.Move();

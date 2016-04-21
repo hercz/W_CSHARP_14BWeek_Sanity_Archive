@@ -6,52 +6,64 @@ using System.Windows.Forms;
 
 namespace SanityArchive
 {
-    public partial class Form1 : Form
-
+    public partial class SanityArchive : Form
     {
         public FileSize SizeOfFile { get; set; }
         public FileOperationHandler FileOperationHandler { get; set; }
 
-        public Form1()
+        public SanityArchive()
         {
             InitializeComponent();
-            SizeOfFile = new FileSize(fileListBox, fileSize_Textbox);
-            FileOperationHandler = new FileOperationHandler(comboBox1, comboBox2, pathTextBox1, pathTextBox2, fileListBox, fileListBox2);
+            SizeOfFile = new FileSize(primaryFileListBox, fileSize_Textbox);
+            FileOperationHandler = new FileOperationHandler(primaryDriverComboBox, secondaryDriveComboBox, primaryPathTextBox, secondaryPathTextBox, primaryFileListBox, SecondaryFileListBox);
             FileOperationHandler.FillPrimaryDriveComboBox();
             FileOperationHandler.FillSecondaryDriveComboBox();
         }
         private Archiving ar = new Archiving();
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void PrimaryDriveComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             FileOperationHandler.FillPrimaryFileBox();
             FileOperationHandler.SetPrimaryPath();
         }
-
-
-        private void fileList_DoubleClick(object sender, MouseEventArgs e)
-        {
-            FileOperationHandler.OpenPrimaryTextBox();
-        }
-
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void secondaryDriveComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             FileOperationHandler.FillSecondaryFileBox();
             FileOperationHandler.SetSecondaryPath();
         }
 
 
-
-        private void fileList2_DoubleClick(object sender, MouseEventArgs e)
+        private void primaryFileListBox_DoubleClick(object sender, MouseEventArgs e)
         {
-            FileOperationHandler.OpenSecondaryTextBox();
-            
-        }               
+            FileOperationHandler.SetPathTextBox(primaryFileListBox,primaryPathTextBox);
+            FileOperationHandler.ShowDirsAndFiles(primaryFileListBox);
+        }
+
+
+        private void SecondaryFileListBox_DoubleClick(object sender, MouseEventArgs e)
+        {
+            FileOperationHandler.SetPathTextBox(SecondaryFileListBox, secondaryPathTextBox);
+            FileOperationHandler.ShowDirsAndFiles(SecondaryFileListBox);
+        }
+
+        private void primaryFileListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedItem = primaryFileListBox.SelectedItem.ToString().ToLower();
+
+            if (selectedItem.EndsWith(".enc"))
+            {
+                encryptionButton.Text = "Decryption";
+            }
+            else
+            {
+                encryptionButton.Text = "Encryption";
+            }
+            SizeOfFile.FillFileSizeTextBox();
+        }
 
         private void compressButton_Click(object sender, EventArgs e)
         {
-            if (fileListBox.SelectedItem.ToString().EndsWith(".gz"))
+            if (primaryFileListBox.SelectedItem.ToString().EndsWith(".gz"))
             {
                 compressButton.Text = "Decompessing";
                 FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -83,52 +95,37 @@ namespace SanityArchive
                 }
             }
         }
-
-        private void fileListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedItem = fileListBox.SelectedItem.ToString().ToLower();
-
-            if (selectedItem.EndsWith(".enc"))
-            {
-                encryptionButton.Text = "Decryption";
-            }
-            else
-            {
-                encryptionButton.Text = "Encryption";
-            }
-            SizeOfFile.FillFileSizeTextBox();
-        }
-
+    
         private void editButton_Click(object sender, EventArgs e)
         {
             AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
-            if (fileListBox.SelectedIndex == -1)
+            if (primaryFileListBox.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a file from the list first!");
             }
             else
             {
-                attributeEditorForm.TextBoxValue = fileListBox.SelectedItem.ToString();
+                attributeEditorForm.TextBoxValue = primaryFileListBox.SelectedItem.ToString();
                 attributeEditorForm.ShowDialog();
             }
         }
 
         private void encryptionButton_Click(object sender, EventArgs e)
         {
-            string selectedItem = pathTextBox1.Text + fileListBox.SelectedItem.ToString();
+            string selectedItem = primaryPathTextBox.Text + primaryFileListBox.SelectedItem.ToString();
             EncryptionAndDecryption encrypOrDecrypt = new EncryptionAndDecryption();
 
             if (encryptionButton.Text.Equals("Encryption"))
             {
                 encrypOrDecrypt.EncryptFile(@selectedItem, @selectedItem + ".enc");
-                fileListBox.Items.Clear();
+                primaryFileListBox.Items.Clear();
                 FileOperationHandler.ShowDirsAndTexts1();
 
             }
             else
             {
                 encrypOrDecrypt.DecryptFile(@selectedItem, @selectedItem.Substring(0, (selectedItem.Length - 4)));
-                fileListBox.Items.Clear();
+                primaryFileListBox.Items.Clear();
                 FileOperationHandler.ShowDirsAndTexts1();
             }
         }

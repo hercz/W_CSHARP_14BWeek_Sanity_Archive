@@ -1,6 +1,6 @@
 ﻿namespace SanityArchive
 {
-    partial class Form1
+    partial class SanityArchive
     {
         /// <summary>
         /// Required designer variable.
@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.DriverLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.fileListBox = new System.Windows.Forms.ListBox();
+            this.primaryDriverComboBox = new System.Windows.Forms.ComboBox();
+            this.primaryFileListBox = new System.Windows.Forms.ListBox();
             this.compressButton = new System.Windows.Forms.Button();
             this.encryptionButton = new System.Windows.Forms.Button();
             this.driverLabel2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.fileListBox2 = new System.Windows.Forms.ListBox();
+            this.secondaryDriveComboBox = new System.Windows.Forms.ComboBox();
+            this.SecondaryFileListBox = new System.Windows.Forms.ListBox();
             this.copyButton = new System.Windows.Forms.Button();
             this.moveButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pathTextBox1 = new System.Windows.Forms.TextBox();
-            this.pathTextBox2 = new System.Windows.Forms.TextBox();
+            this.primaryPathTextBox = new System.Windows.Forms.TextBox();
+            this.secondaryPathTextBox = new System.Windows.Forms.TextBox();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.fileSize_Textbox = new System.Windows.Forms.TextBox();
@@ -59,25 +59,25 @@
             this.DriverLabel.TabIndex = 0;
             this.DriverLabel.Text = "Driver";
             // 
-            // comboBox1
+            // primaryDriverComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(95, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(250, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.primaryDriverComboBox.FormattingEnabled = true;
+            this.primaryDriverComboBox.Location = new System.Drawing.Point(95, 12);
+            this.primaryDriverComboBox.Name = "primaryDriverComboBox";
+            this.primaryDriverComboBox.Size = new System.Drawing.Size(250, 21);
+            this.primaryDriverComboBox.TabIndex = 1;
+            this.primaryDriverComboBox.SelectedIndexChanged += new System.EventHandler(this.PrimaryDriveComboBox_SelectedIndexChanged);
             // 
-            // fileListBox
+            // primaryFileListBox
             // 
-            this.fileListBox.FormattingEnabled = true;
-            this.fileListBox.Location = new System.Drawing.Point(95, 128);
-            this.fileListBox.Name = "fileListBox";
-            this.fileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.fileListBox.Size = new System.Drawing.Size(250, 251);
-            this.fileListBox.TabIndex = 2;
-            this.fileListBox.SelectedIndexChanged += new System.EventHandler(this.fileListBox_SelectedIndexChanged);
-            this.fileListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fileList_DoubleClick);
+            this.primaryFileListBox.FormattingEnabled = true;
+            this.primaryFileListBox.Location = new System.Drawing.Point(95, 128);
+            this.primaryFileListBox.Name = "primaryFileListBox";
+            this.primaryFileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.primaryFileListBox.Size = new System.Drawing.Size(250, 251);
+            this.primaryFileListBox.TabIndex = 2;
+            this.primaryFileListBox.SelectedIndexChanged += new System.EventHandler(this.primaryFileListBox_SelectedIndexChanged);
+            this.primaryFileListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.primaryFileListBox_DoubleClick);
             // 
             // compressButton
             // 
@@ -109,23 +109,23 @@
             this.driverLabel2.TabIndex = 7;
             this.driverLabel2.Text = "Driver";
             // 
-            // comboBox2
+            // secondaryDriveComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(498, 50);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(268, 21);
-            this.comboBox2.TabIndex = 9;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.secondaryDriveComboBox.FormattingEnabled = true;
+            this.secondaryDriveComboBox.Location = new System.Drawing.Point(498, 50);
+            this.secondaryDriveComboBox.Name = "secondaryDriveComboBox";
+            this.secondaryDriveComboBox.Size = new System.Drawing.Size(268, 21);
+            this.secondaryDriveComboBox.TabIndex = 9;
+            this.secondaryDriveComboBox.SelectedIndexChanged += new System.EventHandler(this.secondaryDriveComboBox_SelectedIndexChanged);
             // 
-            // fileListBox2
+            // SecondaryFileListBox
             // 
-            this.fileListBox2.FormattingEnabled = true;
-            this.fileListBox2.Location = new System.Drawing.Point(498, 128);
-            this.fileListBox2.Name = "fileListBox2";
-            this.fileListBox2.Size = new System.Drawing.Size(268, 251);
-            this.fileListBox2.TabIndex = 11;
-            this.fileListBox2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.fileList2_DoubleClick);
+            this.SecondaryFileListBox.FormattingEnabled = true;
+            this.SecondaryFileListBox.Location = new System.Drawing.Point(498, 128);
+            this.SecondaryFileListBox.Name = "SecondaryFileListBox";
+            this.SecondaryFileListBox.Size = new System.Drawing.Size(268, 251);
+            this.SecondaryFileListBox.TabIndex = 11;
+            this.SecondaryFileListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SecondaryFileListBox_DoubleClick);
             // 
             // copyButton
             // 
@@ -175,19 +175,19 @@
             this.label2.TabIndex = 18;
             this.label2.Text = "Path";
             // 
-            // pathTextBox1
+            // primaryPathTextBox
             // 
-            this.pathTextBox1.Location = new System.Drawing.Point(95, 53);
-            this.pathTextBox1.Name = "pathTextBox1";
-            this.pathTextBox1.Size = new System.Drawing.Size(250, 20);
-            this.pathTextBox1.TabIndex = 19;
+            this.primaryPathTextBox.Location = new System.Drawing.Point(95, 53);
+            this.primaryPathTextBox.Name = "primaryPathTextBox";
+            this.primaryPathTextBox.Size = new System.Drawing.Size(250, 20);
+            this.primaryPathTextBox.TabIndex = 19;
             // 
-            // pathTextBox2
+            // secondaryPathTextBox
             // 
-            this.pathTextBox2.Location = new System.Drawing.Point(498, 90);
-            this.pathTextBox2.Name = "pathTextBox2";
-            this.pathTextBox2.Size = new System.Drawing.Size(268, 20);
-            this.pathTextBox2.TabIndex = 20;
+            this.secondaryPathTextBox.Location = new System.Drawing.Point(498, 90);
+            this.secondaryPathTextBox.Name = "secondaryPathTextBox";
+            this.secondaryPathTextBox.Size = new System.Drawing.Size(268, 20);
+            this.secondaryPathTextBox.TabIndex = 20;
             // 
             // searchTextBox
             // 
@@ -222,7 +222,7 @@
             this.fileSize_label.TabIndex = 24;
             this.fileSize_label.Text = "Size:";
             // 
-            // Form1
+            // SanityArchive
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -231,22 +231,22 @@
             this.Controls.Add(this.fileSize_Textbox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.searchTextBox);
-            this.Controls.Add(this.pathTextBox2);
-            this.Controls.Add(this.pathTextBox1);
+            this.Controls.Add(this.secondaryPathTextBox);
+            this.Controls.Add(this.primaryPathTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.moveButton);
             this.Controls.Add(this.copyButton);
-            this.Controls.Add(this.fileListBox2);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.SecondaryFileListBox);
+            this.Controls.Add(this.secondaryDriveComboBox);
             this.Controls.Add(this.driverLabel2);
             this.Controls.Add(this.encryptionButton);
             this.Controls.Add(this.compressButton);
-            this.Controls.Add(this.fileListBox);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.primaryFileListBox);
+            this.Controls.Add(this.primaryDriverComboBox);
             this.Controls.Add(this.DriverLabel);
-            this.Name = "Form1";
+            this.Name = "SanityArchive";
             this.Text = "Sanity archive";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -256,20 +256,20 @@
         #endregion
 
         private System.Windows.Forms.Label DriverLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
-        public System.Windows.Forms.ListBox fileListBox;
+        private System.Windows.Forms.ComboBox primaryDriverComboBox;
+        public System.Windows.Forms.ListBox primaryFileListBox;
         private System.Windows.Forms.Button compressButton;
         private System.Windows.Forms.Button encryptionButton;
         private System.Windows.Forms.Label driverLabel2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ListBox fileListBox2;
+        private System.Windows.Forms.ComboBox secondaryDriveComboBox;
+        private System.Windows.Forms.ListBox SecondaryFileListBox;
         private System.Windows.Forms.Button copyButton;
         private System.Windows.Forms.Button moveButton;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox pathTextBox1;
-        private System.Windows.Forms.TextBox pathTextBox2;
+        private System.Windows.Forms.TextBox primaryPathTextBox;
+        private System.Windows.Forms.TextBox secondaryPathTextBox;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox fileSize_Textbox;

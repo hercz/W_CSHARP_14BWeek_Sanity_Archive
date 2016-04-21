@@ -32,9 +32,41 @@ namespace SanityArchive
             SecondaryFileBox = sFileBox;
         }
 
+        public void SetPathTextBox(ListBox fileListBox,  TextBox pathTextBox)
+        {
+            CurrentPath = pathTextBox.Text + fileListBox.SelectedItem + "\\";            
+            pathTextBox.Text = CurrentPath;            
+        }
+
+        public void ShowDirsAndFiles(ListBox fileListBox)
+        {
+            fileListBox.Items.Clear();
+            try
+            {
+                string[] dirs = Directory.GetDirectories(CurrentPath);
+
+                foreach (var dir in dirs)
+                {
+                    string dirName = Path.GetFileName(dir);
+                    fileListBox.Items.Add(dirName);
+                }
+
+                string[] files = Directory.GetFiles(CurrentPath);
+                foreach (var file in files)
+                {
+                    string fileName = Path.GetFileName(file);
+                    fileListBox.Items.Add(fileName);
+                }
+            }
+            catch (Exception er)
+            {
+                fileListBox.Items.Clear();
+                MessageBox.Show(er.Message);
+            }
+        }
+
         public void OpenPrimaryTextBox()
         {
-            CurrentPath = PrimaryPathTextBox.Text + PrimaryFileBox.SelectedItem + "\\";
             CurrentPath = PrimaryPathTextBox.Text + PrimaryFileBox.SelectedItem + "\\";
             PrimaryFileBox.Items.Clear();
             PrimaryPathTextBox.Text = CurrentPath;
@@ -49,8 +81,7 @@ namespace SanityArchive
             ShowDirsAndTexts2();
         }
 
-        public void ShowDirsAndTexts1
-            ()
+        public void ShowDirsAndTexts1()
         {
             try
             {
@@ -75,9 +106,7 @@ namespace SanityArchive
                 MessageBox.Show(er.Message);
             }
         }
-        private
-            void ShowDirsAndTexts2
-            ()
+        private void ShowDirsAndTexts2()
         {
             try
             {
@@ -103,23 +132,17 @@ namespace SanityArchive
             }
         }
 
-        public
-            void SetPrimaryPath
-            ()
+        public void SetPrimaryPath()
         {
             PrimaryPathTextBox.Text = PrimaryDriveComboBox.SelectedItem.ToString();
         }
 
-        public
-            void SetSecondaryPath
-            ()
+        public void SetSecondaryPath()
         {
             SecondaryPathTextBox.Text = SecondaryDriveComboBox.SelectedItem.ToString();
         }
 
-        public
-            void FillPrimaryDriveComboBox
-            ()
+        public void FillPrimaryDriveComboBox()
         {
             string[] drives = Directory.GetLogicalDrives();
             foreach (var drive in drives)
@@ -128,9 +151,7 @@ namespace SanityArchive
             }
         }
 
-        public
-            void FillPrimaryFileBox
-            ()
+        public void FillPrimaryFileBox()
         {
             string[] drives = Directory.GetLogicalDrives();
 
@@ -158,9 +179,7 @@ namespace SanityArchive
             }
 
         }
-        public
-            void FillSecondaryDriveComboBox
-            ()
+        public void FillSecondaryDriveComboBox()
         {
             string[] drives = Directory.GetLogicalDrives();
             foreach (var drive in drives)
@@ -168,9 +187,7 @@ namespace SanityArchive
                 SecondaryDriveComboBox.Items.Add(drive);
             }
         }
-        public
-            void FillSecondaryFileBox
-            ()
+        public void FillSecondaryFileBox()
         {
             string[] drives = Directory.GetLogicalDrives();
 
@@ -196,7 +213,6 @@ namespace SanityArchive
                 SecondaryFileBox.Items.Clear();
                 MessageBox.Show(er.Message);
             }
-
         }
     }
 }
