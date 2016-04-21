@@ -79,6 +79,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search.cs" />
+    <Compile Include="SelectListBox.cs" />
     <EmbeddedResource Include="AttributeEditorForm.resx">
       <DependentUpon>AttributeEditorForm.cs</DependentUpon>
     </EmbeddedResource>
