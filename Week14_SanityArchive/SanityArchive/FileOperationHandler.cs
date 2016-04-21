@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -29,17 +25,6 @@ namespace SanityArchive
             }
         }
 
-
-        public FileOperationHandler(ComboBox pdComboBox, ComboBox sdComboBox, TextBox ppTextBox, TextBox spTextBox,
-            ListBox pFileBox, ListBox sFileBox)
-        {
-            PrimaryDriveComboBox = pdComboBox;
-            SecondaryDriveComboBox = sdComboBox;
-            PrimaryPathTextBox = ppTextBox;
-            SecondaryPathTextBox = spTextBox;
-            PrimaryFileBox = pFileBox;
-            SecondaryFileBox = sFileBox;
-        }
 
         public void SetPathTextBox(ListBox fileListBox,  TextBox pathTextBox)
         {
@@ -87,11 +72,11 @@ namespace SanityArchive
             }
         }
 
-        public void FillFileListBoxFromComboBox(ListBox fileListBox)
+        public void FillFileListBoxFromComboBox(ListBox fileListBox, ComboBox driveComboBox)
         {
             try
             {
-                string[] dirs = Directory.GetDirectories(Drives[PrimaryDriveComboBox.SelectedIndex]);
+                string[] dirs = Directory.GetDirectories(Drives[driveComboBox.SelectedIndex]);
 
                 foreach (var dir in dirs)
                 {
@@ -99,7 +84,7 @@ namespace SanityArchive
                     fileListBox.Items.Add(dirName);
                 }
 
-                string[] files = Directory.GetFiles(Drives[PrimaryDriveComboBox.SelectedIndex]);
+                string[] files = Directory.GetFiles(Drives[driveComboBox.SelectedIndex]);
                 foreach (var file in files)
                 {
                     string fileName = Path.GetFileName(file);
@@ -112,7 +97,6 @@ namespace SanityArchive
                 MessageBox.Show(er.Message);
             }
         }
-
     }
 }
 

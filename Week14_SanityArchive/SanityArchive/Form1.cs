@@ -17,23 +17,22 @@ namespace SanityArchive
             InitializeComponent();           
         }
 
-
         private void SanityArchive_Load(object sender, EventArgs e)
         {
             SizeOfFile = new FileSize(primaryFileListBox, fileSize_Textbox);
-            FileOperationHandler = new FileOperationHandler(primaryDriverComboBox, secondaryDriveComboBox, primaryPathTextBox, secondaryPathTextBox, primaryFileListBox, SecondaryFileListBox);
+            FileOperationHandler = new FileOperationHandler();
             FileOperationHandler.FillComboBox(primaryDriverComboBox);
             FileOperationHandler.FillComboBox(secondaryDriveComboBox);
         }
 
         private void PrimaryDriveComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FileOperationHandler.FillFileListBoxFromComboBox(primaryFileListBox);
+            FileOperationHandler.FillFileListBoxFromComboBox(primaryFileListBox, primaryDriverComboBox);
             FileOperationHandler.SetPathTextBoxFromComboBox(primaryDriverComboBox, primaryPathTextBox);
         }
         private void secondaryDriveComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FileOperationHandler.FillFileListBoxFromComboBox(SecondaryFileListBox);
+            FileOperationHandler.FillFileListBoxFromComboBox(SecondaryFileListBox, secondaryDriveComboBox);
             FileOperationHandler.SetPathTextBoxFromComboBox(secondaryDriveComboBox, secondaryPathTextBox); ;
         }
 

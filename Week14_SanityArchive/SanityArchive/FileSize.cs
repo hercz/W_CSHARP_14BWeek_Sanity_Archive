@@ -38,7 +38,7 @@ namespace SanityArchive
             SizeOfFileInByte = file.Length;
             if (SizeOfFileInByte < 1024)
             {
-                SizeTextBox.Text = SizeOfFileInByte + @" byte";
+                SizeTextBox.Text = $"{SizeOfFileInByte:F2} byte";
             }
             else if (SizeOfFileInByte < 1048576)
             {
