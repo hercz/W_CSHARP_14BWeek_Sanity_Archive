@@ -24,14 +24,14 @@ namespace SanityArchive
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             FileOperationHandler.FillPrimaryFileBox();
+            FileOperationHandler.SetPrimaryPath();
         }
 
 
         private void fileList_DoubleClick(object sender, MouseEventArgs e)
         {
-            
+            FileOperationHandler.Open();
         }
 
 

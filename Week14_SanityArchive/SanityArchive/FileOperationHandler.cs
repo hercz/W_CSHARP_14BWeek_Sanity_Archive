@@ -31,10 +31,42 @@ namespace SanityArchive
             SecondaryFileBox = sFileBox;
         }
 
+        public void Open()
+        {
+            CurrentPath = PrimaryPathTextBox.Text + PrimaryFileBox.SelectedItem + "\\";
+            PrimaryFileBox.Items.Clear();
+            PrimaryPathTextBox.Text = CurrentPath;
+            ShowDirsAndTexts();
+        }
+        private void ShowDirsAndTexts()
+        {
+            try
+            {
+                string[] dirs = Directory.GetDirectories(CurrentPath);
+
+                foreach (var dir in dirs)
+                {
+                    string dirName = Path.GetFileName(dir);
+                    PrimaryFileBox.Items.Add(dirName);
+                }
+
+                string[] files = Directory.GetFiles(CurrentPath);
+                foreach (var file in files)
+                {
+                    string fileName = Path.GetFileName(file);
+                        PrimaryFileBox.Items.Add(fileName);                    
+                }
+            }
+            catch (Exception er)
+            {
+                PrimaryFileBox.Items.Clear();
+                MessageBox.Show(er.Message);
+            }
+        }
+
         public void SetPrimaryPath()
         {
-            string[] drives = Directory.GetLogicalDrives();
-            PrimaryDriveComboBox.Text = DriveInfo.GetDrives(drives[PrimaryDriveComboBox.SelectedIndex]);
+            PrimaryPathTextBox.Text = PrimaryDriveComboBox.SelectedItem.ToString();
         }
 
         public void FillPrimaryDriveComboBox()
