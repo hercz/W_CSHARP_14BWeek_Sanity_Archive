@@ -205,8 +205,16 @@ namespace SanityArchive
         private void editButton_Click(object sender, EventArgs e)
         {
             AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
-            attributeEditorForm.TextBoxValue = this.fileListBox.SelectedItem.ToString();
-            attributeEditorForm.ShowDialog();
+            if (fileListBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("You need to select a file first!");
+            }
+            else
+            {
+                attributeEditorForm.TextBoxValue = fileListBox.SelectedItem.ToString();
+                attributeEditorForm.ShowDialog();
+            }
+            
         }
 
         private void encryptionButton_Click(object sender, EventArgs e)
