@@ -190,5 +190,11 @@ namespace SanityArchive
         {
             SizeOfFile.FillFileSizeTextBox();
         }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
+            attributeEditorForm.ShowDialog();
+        }
     }
 }

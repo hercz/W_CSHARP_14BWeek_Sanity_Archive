@@ -152,6 +152,7 @@
             this.editButton.TabIndex = 16;
             this.editButton.Text = "Edit";
             this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // label1
             // 
