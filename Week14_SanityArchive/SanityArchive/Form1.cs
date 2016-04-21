@@ -122,14 +122,14 @@ namespace SanityArchive
             {
                 encrypOrDecrypt.EncryptFile(@selectedItem, @selectedItem + ".enc");
                 fileListBox.Items.Clear();
-                FileOperationHandler.ShowDirsAndTexts();
+                FileOperationHandler.ShowDirsAndTexts1();
 
             }
             else
             {
                 encrypOrDecrypt.DecryptFile(@selectedItem, @selectedItem.Substring(0, (selectedItem.Length - 4)));
                 fileListBox.Items.Clear();
-                FileOperationHandler.ShowDirsAndTexts();
+                FileOperationHandler.ShowDirsAndTexts1();
             }
         }
     }
