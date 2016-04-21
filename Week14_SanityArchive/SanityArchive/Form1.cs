@@ -16,7 +16,7 @@ namespace SanityArchive
         {
             InitializeComponent();
             SizeOfFile = new FileSize(fileListBox, fileSize_Textbox);
-            FileOperationHandler = new FileOperationHandler(comboBox1,comboBox2,pathTextBox1,pathTextBox2,fileListBox,fileListBox2);
+            FileOperationHandler = new FileOperationHandler(comboBox1, comboBox2, pathTextBox1, pathTextBox2, fileListBox, fileListBox2);
             FileOperationHandler.FillPrimaryDriveComboBox();
             FileOperationHandler.FillSecondaryDriveComboBox();
         }
@@ -92,7 +92,7 @@ namespace SanityArchive
             {
                 encryptionButton.Text = "Decryption";
             }
-             else
+            else
             {
                 encryptionButton.Text = "Encryption";
             }
@@ -110,22 +110,27 @@ namespace SanityArchive
             {
                 attributeEditorForm.TextBoxValue = fileListBox.SelectedItem.ToString();
                 attributeEditorForm.ShowDialog();
-            }            
+            }
         }
 
         private void encryptionButton_Click(object sender, EventArgs e)
         {
-            string selectedItem = fileListBox.SelectedItem.ToString();
+            string selectedItem = pathTextBox1.Text + fileListBox.SelectedItem.ToString();
             EncryptionAndDecryption encrypOrDecrypt = new EncryptionAndDecryption();
 
-            if (encryptionButton.Text.Equals("Encryption")) 
+            if (encryptionButton.Text.Equals("Encryption"))
             {
-               encrypOrDecrypt.EncryptFile(@selectedItem, @selectedItem + ".enc");
+                encrypOrDecrypt.EncryptFile(@selectedItem, @selectedItem + ".enc");
+                fileListBox.Items.Clear();
+                FileOperationHandler.ShowDirsAndTexts();
+
             }
             else
             {
-                encrypOrDecrypt.DecryptFile(@selectedItem, @selectedItem.Substring(0, (selectedItem.Length - 4 )));
+                encrypOrDecrypt.DecryptFile(@selectedItem, @selectedItem.Substring(0, (selectedItem.Length - 4)));
+                fileListBox.Items.Clear();
+                FileOperationHandler.ShowDirsAndTexts();
             }
-        }      
+        }
     }
 }
