@@ -17,8 +17,8 @@ namespace SanityArchive
         public TextBox SecondaryPathTextBox { get; set; }
         public ListBox PrimaryFileBox { get; set; }
         public ListBox SecondaryFileBox { get; set; }
-        
 
+        public string CurrentPath { get; set; }
 
 
         public FileOperationHandler(ComboBox pdComboBox, ComboBox sdComboBox, TextBox ppTextBox, TextBox spTextBox, ListBox pFileBox, ListBox sFileBox)
@@ -29,6 +29,12 @@ namespace SanityArchive
             SecondaryPathTextBox = spTextBox;
             PrimaryFileBox = pFileBox;
             SecondaryFileBox = sFileBox;
+        }
+
+        public void SetPrimaryPath()
+        {
+            string[] drives = Directory.GetLogicalDrives();
+            PrimaryDriveComboBox.Text = DriveInfo.GetDrives(drives[PrimaryDriveComboBox.SelectedIndex]);
         }
 
         public void FillPrimaryDriveComboBox()
