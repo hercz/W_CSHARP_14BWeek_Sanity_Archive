@@ -18,29 +18,16 @@ namespace SanityArchive
             SizeOfFile = new FileSize(fileListBox, fileSize_Textbox);
             FileOperationHandler = new FileOperationHandler(comboBox1,comboBox2,pathTextBox1,pathTextBox2,fileListBox,fileListBox2);
             FileOperationHandler.FillPrimaryDriveComboBox();
+            FileOperationHandler.FillSecondaryDriveComboBox();
         }
         private Archiving ar = new Archiving();
         private string source;
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             FileOperationHandler.FillPrimaryFileBox();
 
-            //try
-            //{
-            //    fileListBox.Items.Clear();
-            //    pathTextBox1.Text = comboBox1.Text;
-            //    string[] directoryList = Directory.GetDirectories(pathTextBox1.Text);
-            //    foreach (string str in directoryList)
-            //    {
-            //        fileListBox.Items.Add(str);
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Not existed driver!");
-            //}
         }
 
 
@@ -90,20 +77,9 @@ namespace SanityArchive
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                fileListBox2.Items.Clear();
-                pathTextBox2.Text = comboBox2.Text;
-                string[] directoryList = Directory.GetDirectories(pathTextBox2.Text);
-                foreach (string str in directoryList)
-                {
-                    fileListBox2.Items.Add(str);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Not existed driver!");
-            }
+
+            FileOperationHandler.FillSecondaryFileBox();
+
         }
 
 

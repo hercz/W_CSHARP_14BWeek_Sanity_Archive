@@ -68,5 +68,41 @@ namespace SanityArchive
             }
 
         }
+        public void FillSecondaryDriveComboBox()
+        {
+            string[] drives = Directory.GetLogicalDrives();
+            foreach (var drive in drives)
+            {
+                SecondaryDriveComboBox.Items.Add(drive);
+            }
+        }
+        public void FillSecondaryFileBox()
+        {
+            string[] drives = Directory.GetLogicalDrives();
+
+            try
+            {
+                string[] dirs = Directory.GetDirectories(drives[SecondaryDriveComboBox.SelectedIndex]);
+
+                foreach (var dir in dirs)
+                {
+                    string dirName = Path.GetFileName(dir);
+                    SecondaryFileBox.Items.Add(dirName);
+                }
+
+                string[] files = Directory.GetFiles(drives[SecondaryDriveComboBox.SelectedIndex]);
+                foreach (var file in files)
+                {
+                    string fileName = Path.GetFileName(file);
+                    SecondaryFileBox.Items.Add(fileName);
+                }
+            }
+            catch (Exception er)
+            {
+                SecondaryFileBox.Items.Clear();
+                MessageBox.Show(er.Message);
+            }
+
+        }
     }
 }
