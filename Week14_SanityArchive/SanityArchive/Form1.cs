@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing.Text;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
@@ -134,6 +135,53 @@ namespace SanityArchive
             }
         }
 
+        private void copyButton_Click(object sender, EventArgs e)
+        {
+            List<string> selectedItems = new List<string>();
+            foreach (var item in primaryFileListBox.SelectedItems)
+            {
+                string selectedItemPath = Path.Combine(primaryPathTextBox.Text, item.ToString());
+                selectedItems.Add(selectedItemPath);
+            }
+            string destFilePath = secondaryPathTextBox.Text;
+            foreach (var item in selectedItems)
+            {
+                FileAttributes fa = File.GetAttributes(item);
+                CopyAndMove cam = new CopyAndMove(item, destFilePath);
+                if (fa == FileAttributes.Directory)
+                {
+                    cam.CopyDirectory();
+                }
+                else
+                {
+                    cam.CopyFile();
+                }
+            }
+            
+        }
 
+        private void moveButton_Click(object sender, EventArgs e)
+        {
+            List<string> selectedItems = new List<string>();
+            foreach (var item in primaryFileListBox.SelectedItems)
+            {
+                string selectedItemPath = Path.Combine(primaryPathTextBox.Text, item.ToString());
+                selectedItems.Add(selectedItemPath);
+            }
+            string destFilePath = secondaryPathTextBox.Text;
+            foreach (var item in selectedItems)
+            {
+                FileAttributes fa = File.GetAttributes(item);
+                CopyAndMove cam = new CopyAndMove(item, destFilePath);
+                if (fa == FileAttributes.Directory)
+                {
+                    cam.MoveDirectory();
+                }
+                else
+                {
+                    cam.MoveFile();
+                }
+            }
+        }
     }
 }
