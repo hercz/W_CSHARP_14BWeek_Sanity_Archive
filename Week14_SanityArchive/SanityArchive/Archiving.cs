@@ -10,6 +10,16 @@ namespace SanityArchive
 {
     class Archiving
     {
+        public void CreateZipFile(string fileName, IEnumerable<string> files)
+        {
+            var zip = ZipFile.Open(fileName, ZipArchiveMode.Create);
+            foreach (var file in files)
+            {
+                zip.CreateEntryFromFile(file, Path.GetFileName(file), CompressionLevel.Optimal);
+            }
+            zip.Dispose();
+        }
+
         public void Compress(FileInfo fileToCompress)
         {
             using (FileStream originalFileStream = fileToCompress.OpenRead())

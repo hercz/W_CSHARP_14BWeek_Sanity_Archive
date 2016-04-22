@@ -47,6 +47,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.fileSize_Textbox = new System.Windows.Forms.TextBox();
             this.fileSize_label = new System.Windows.Forms.Label();
+            this.buttonDecompress = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // DriverLabel
@@ -135,6 +136,7 @@
             this.copyButton.TabIndex = 14;
             this.copyButton.Text = "Copy";
             this.copyButton.UseVisualStyleBackColor = true;
+            this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
             // 
             // moveButton
             // 
@@ -144,6 +146,7 @@
             this.moveButton.TabIndex = 15;
             this.moveButton.Text = "Move";
             this.moveButton.UseVisualStyleBackColor = true;
+            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
             // 
             // editButton
             // 
@@ -222,11 +225,22 @@
             this.fileSize_label.TabIndex = 24;
             this.fileSize_label.Text = "Size:";
             // 
+            // buttonDecompress
+            // 
+            this.buttonDecompress.Location = new System.Drawing.Point(375, 344);
+            this.buttonDecompress.Name = "buttonDecompress";
+            this.buttonDecompress.Size = new System.Drawing.Size(94, 35);
+            this.buttonDecompress.TabIndex = 25;
+            this.buttonDecompress.Text = "Decompress";
+            this.buttonDecompress.UseVisualStyleBackColor = true;
+            this.buttonDecompress.Click += new System.EventHandler(this.buttonDecompress_Click_1);
+            // 
             // SanityArchive
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 407);
+            this.Controls.Add(this.buttonDecompress);
             this.Controls.Add(this.fileSize_label);
             this.Controls.Add(this.fileSize_Textbox);
             this.Controls.Add(this.label3);
@@ -275,6 +289,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox fileSize_Textbox;
         private System.Windows.Forms.Label fileSize_label;
+        private System.Windows.Forms.Button buttonDecompress;
     }
 }
 
