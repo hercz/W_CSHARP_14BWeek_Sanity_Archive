@@ -15,7 +15,7 @@ namespace SanityArchive
 
         public SanityArchive()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
 
         private void SanityArchive_Load(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace SanityArchive
 
         private void primaryFileListBox_DoubleClick(object sender, MouseEventArgs e)
         {
-            FileOperationHandler.SetPathTextBox(primaryFileListBox,primaryPathTextBox);
+            FileOperationHandler.SetPathTextBox(primaryFileListBox, primaryPathTextBox);
             FileOperationHandler.ShowDirsAndFiles(primaryFileListBox);
         }
 
@@ -68,39 +68,38 @@ namespace SanityArchive
 
         private void compressButton_Click(object sender, EventArgs e)
         {
-            if (primaryFileListBox.SelectedItem.ToString().EndsWith(".gz"))
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            string path = string.Empty;
+            if (fbd.ShowDialog() == DialogResult.OK)
             {
-                compressButton.Text = "Decompessing";
-                FolderBrowserDialog fbd = new FolderBrowserDialog();
-                string path = string.Empty;
-                if (fbd.ShowDialog() == DialogResult.OK)
-                {
-                    path = fbd.SelectedPath;
-                }
-                DirectoryInfo dInfo = new DirectoryInfo(path);
-                foreach (FileInfo fInfo in dInfo.GetFiles())
-                {
-                    ar.Decompress(fInfo);
-                    MessageBox.Show("Decompressing Finished!");
-                }
+                path = fbd.SelectedPath;
             }
-            else
+            DirectoryInfo dInfo = new DirectoryInfo(path);
+            foreach (FileInfo fInfo in dInfo.GetFiles())
             {
-                FolderBrowserDialog fbd = new FolderBrowserDialog();
-                string path = string.Empty;
-                if (fbd.ShowDialog() == DialogResult.OK)
-                {
-                    path = fbd.SelectedPath;
-                }
-                DirectoryInfo dInfo = new DirectoryInfo(path);
-                foreach (FileInfo fInfo in dInfo.GetFiles())
-                {
-                    ar.Compress(fInfo);
-                    MessageBox.Show("Compression Finished!");
-                }
+                ar.Compress(fInfo);
             }
+            MessageBox.Show("Compression Finished!");
+
+           
         }
-    
+
+        private void buttonDecompress_Click_1(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            string path = string.Empty;
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                path = fbd.SelectedPath;
+            }
+            DirectoryInfo dInfo = new DirectoryInfo(path);
+            foreach (FileInfo fInfo in dInfo.GetFiles())
+            {
+                ar.Decompress(fInfo);
+            }
+            MessageBox.Show("Decompressing Finished!");
+        }
+
         private void editButton_Click(object sender, EventArgs e)
         {
             AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
@@ -157,7 +156,7 @@ namespace SanityArchive
                     cam.CopyFile();
                 }
             }
-            
+
         }
 
         private void moveButton_Click(object sender, EventArgs e)
