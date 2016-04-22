@@ -9,14 +9,19 @@ namespace SanityArchive
 {
     public class AttributeEditor
     {
-        public void FileRenamer()
+        public void AdjustFileAttributes()
         {
-            SanityArchive mainForm = new SanityArchive();
-            string fileToRename = mainForm.primaryFileListBox.SelectedItem.ToString();
-            
-            FileStream originalFile = File.Create(fileToRename);
-            //File.Move();
-            
+            AttributeEditorForm form = new AttributeEditorForm();
+            if (File.GetAttributes("C:\\ArchiveTester\\bi.jpg") == FileAttributes.Hidden)
+            {
+                form.checkBoxHidden.Checked = true;
+            }
+
+            if (File.GetAttributes("C:\\ArchiveTester\\bi.jpg") == FileAttributes.ReadOnly)
+            {
+                form.checkBoxReadOnly.Checked = true;
+            }
+
         }
     }
 }

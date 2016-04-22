@@ -102,14 +102,15 @@ namespace SanityArchive
     
         private void editButton_Click(object sender, EventArgs e)
         {
-            AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
             if (primaryFileListBox.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a file from the list first!");
             }
             else
             {
-                attributeEditorForm.TextBoxValue = primaryFileListBox.SelectedItem.ToString();
+                AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
+                string selectedItem = primaryPathTextBox.Text + primaryFileListBox.SelectedItem.ToString();
+                attributeEditorForm.TextBoxValue = selectedItem;
                 attributeEditorForm.ShowDialog();
             }
         }

@@ -20,13 +20,41 @@ namespace SanityArchive
         public AttributeEditorForm()
         {
             InitializeComponent();
+            if (File.GetAttributes("C:\\ArchiveTester\\test.jpg") == FileAttributes.Hidden)
+            {
+                checkBoxHidden.Checked = true;
+            }
+
+            if (File.GetAttributes("C:\\ArchiveTester\\test.jpg") == FileAttributes.ReadOnly)
+            {
+                checkBoxReadOnly.Checked = true;
+            }
+            if (File.GetAttributes("C:\\ArchiveTester\\test.jpg") == FileAttributes.Compressed)
+            {
+                checkBoxCompressed.Checked = true;
+            }
+
+            if (File.GetAttributes("C:\\ArchiveTester\\test.jpg") == FileAttributes.Encrypted)
+            {
+                checkBoxEncrypted.Checked = true;
+            }
+
+        }
+
+        public void InstantiateCheckbox()
+        {
+            
         }
 
         public string TextBoxValue
         {
             get { return textBoxFileName.Text; }
             set { textBoxFileName.Text = value; }
-            
+        }
+
+        private void textBoxFileName_GotFocus(object sender, EventArgs e)
+        {
+            originalFileName = textBoxFileName.Text;
         }
 
         private void textBoxFileName_TextChanged(object sender, EventArgs e)
@@ -37,10 +65,7 @@ namespace SanityArchive
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            //textBoxFileName.Text = String.Empty;
             File.Move(originalFileName, newFileName);
-            //AttributeEditor editor = new AttributeEditor();
-            //editor.FileRenamer();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -48,6 +73,16 @@ namespace SanityArchive
             Close();
         }
 
-        
+        private void checkBoxReadOnly_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxReadOnly.Checked)
+            {
+                File.SetAttributes(originalFileName, FileAttributes.ReadOnly);
+            }
+            else
+            {
+                File.SetAttributes(originalFileName, ~FileAttributes.ReadOnly);
+            }
+        }
     }
 }
