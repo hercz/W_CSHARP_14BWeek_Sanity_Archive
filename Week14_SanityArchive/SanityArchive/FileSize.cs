@@ -7,12 +7,15 @@ namespace SanityArchive
     {
         public ListBox FileListBox { get; }
         public TextBox SizeTextBox { get; }
+        public TextBox PathTextBox { get; }
         public string FilePath { get; private set; }
+        public string CurrentPath { get; set; }
         public long SizeOfFileInByte { get; private set; }
         public double SizeOfFileInKbMb { get; private set; }
 
-        public FileSize(ListBox fileListBox, TextBox sizeTextBox)
+        public FileSize(TextBox pathTextBox,ListBox fileListBox, TextBox sizeTextBox)
         {
+            PathTextBox = pathTextBox;
             FileListBox = fileListBox;
             SizeTextBox = sizeTextBox;
         }
@@ -20,10 +23,10 @@ namespace SanityArchive
         public void FillFileSizeTextBox()
         {
             SizeTextBox.Clear();
-            string path = FileListBox.SelectedItem.ToString();
-            if (File.Exists(path))
+            CurrentPath = PathTextBox.Text + FileListBox.SelectedItem;
+            if (File.Exists(CurrentPath))
             {
-                GetFileSize(path);
+                GetFileSize(CurrentPath);
             }
             else
             {
@@ -38,17 +41,17 @@ namespace SanityArchive
             SizeOfFileInByte = file.Length;
             if (SizeOfFileInByte < 1024)
             {
-                SizeTextBox.Text = $"{SizeOfFileInByte:F2} byte";
+                SizeTextBox.Text = $"{SizeOfFileInByte} byte";
             }
             else if (SizeOfFileInByte < 1048576)
             {
                 SizeOfFileInKbMb = SizeOfFileInByte / 1024f;
-                SizeTextBox.Text = SizeOfFileInKbMb + @" KB";
+                SizeTextBox.Text = $"{SizeOfFileInKbMb:F2} KB";
             }
             else
             {
                 SizeOfFileInKbMb = SizeOfFileInByte / 1024f / 1024f;
-                SizeTextBox.Text = SizeOfFileInKbMb + @" MB";
+                SizeTextBox.Text = $"{SizeOfFileInKbMb:F2} MB";
             }
 
 

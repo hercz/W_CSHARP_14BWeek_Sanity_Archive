@@ -20,7 +20,7 @@ namespace SanityArchive
 
         private void SanityArchive_Load(object sender, EventArgs e)
         {
-            SizeOfFile = new FileSize(primaryFileListBox, fileSize_Textbox);
+            SizeOfFile = new FileSize(primaryPathTextBox,primaryFileListBox, fileSize_Textbox);
             FileOperationHandler = new FileOperationHandler();
             FileOperationHandler.FillComboBox(primaryDriverComboBox);
             FileOperationHandler.FillComboBox(secondaryDriveComboBox);
