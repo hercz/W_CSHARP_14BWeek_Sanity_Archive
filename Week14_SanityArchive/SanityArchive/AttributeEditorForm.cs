@@ -20,43 +20,40 @@ namespace SanityArchive
         public AttributeEditorForm()
         {
             InitializeComponent();
-            if (File.GetAttributes("C:\\ArchiveTester\\test.jpg") == FileAttributes.Hidden)
+        }
+
+        public AttributeEditorForm(string filePath)
+        {
+            InitializeComponent();
+            textBoxFileName.Text = filePath;
+            originalFileName = textBoxFileName.Text;
+
+            if (File.GetAttributes(originalFileName) == FileAttributes.Hidden)
             {
                 checkBoxHidden.Checked = true;
             }
 
-            if (File.GetAttributes("C:\\ArchiveTester\\test.jpg") == FileAttributes.ReadOnly)
+            if (File.GetAttributes(originalFileName) == FileAttributes.ReadOnly)
             {
                 checkBoxReadOnly.Checked = true;
             }
-            if (File.GetAttributes("C:\\ArchiveTester\\test.jpg") == FileAttributes.Compressed)
+            if (File.GetAttributes(originalFileName) == FileAttributes.Compressed)
             {
                 checkBoxCompressed.Checked = true;
             }
 
-            if (File.GetAttributes("C:\\ArchiveTester\\test.jpg") == FileAttributes.Encrypted)
+            if (File.GetAttributes(originalFileName) == FileAttributes.Encrypted)
             {
                 checkBoxEncrypted.Checked = true;
             }
-
         }
-
-        public void InstantiateCheckbox()
-        {
-            
-        }
-
+        /*
         public string TextBoxValue
         {
             get { return textBoxFileName.Text; }
             set { textBoxFileName.Text = value; }
         }
-
-        private void textBoxFileName_GotFocus(object sender, EventArgs e)
-        {
-            originalFileName = textBoxFileName.Text;
-        }
-
+        */
         private void textBoxFileName_TextChanged(object sender, EventArgs e)
 
         {
@@ -66,6 +63,7 @@ namespace SanityArchive
         private void saveButton_Click(object sender, EventArgs e)
         {
             File.Move(originalFileName, newFileName);
+            Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -82,6 +80,18 @@ namespace SanityArchive
             else
             {
                 File.SetAttributes(originalFileName, ~FileAttributes.ReadOnly);
+            }
+        }
+
+        private void checkBoxHidden_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxHidden.Checked)
+            {
+                File.SetAttributes(originalFileName, FileAttributes.Hidden);
+            }
+            else
+            {
+                File.SetAttributes(originalFileName, ~FileAttributes.Hidden);
             }
         }
     }

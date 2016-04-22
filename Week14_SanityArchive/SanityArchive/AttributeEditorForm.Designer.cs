@@ -34,9 +34,9 @@
             this.checkBoxReadOnly = new System.Windows.Forms.CheckBox();
             this.checkBoxHidden = new System.Windows.Forms.CheckBox();
             this.saveButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
             this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
             this.checkBoxEncrypted = new System.Windows.Forms.CheckBox();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -64,7 +64,6 @@
             this.textBoxFileName.Size = new System.Drawing.Size(308, 20);
             this.textBoxFileName.TabIndex = 2;
             this.textBoxFileName.TextChanged += new System.EventHandler(this.textBoxFileName_TextChanged);
-            this.textBoxFileName.Enter += new System.EventHandler(this.textBoxFileName_GotFocus);
             // 
             // checkBoxReadOnly
             // 
@@ -86,6 +85,7 @@
             this.checkBoxHidden.TabIndex = 4;
             this.checkBoxHidden.Text = "Hidden";
             this.checkBoxHidden.UseVisualStyleBackColor = true;
+            this.checkBoxHidden.CheckedChanged += new System.EventHandler(this.checkBoxHidden_CheckedChanged);
             // 
             // saveButton
             // 
@@ -96,16 +96,6 @@
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Location = new System.Drawing.Point(230, 75);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(101, 23);
-            this.cancelButton.TabIndex = 6;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // checkBoxCompressed
             // 
@@ -127,11 +117,21 @@
             this.checkBoxEncrypted.Text = "Encrypted";
             this.checkBoxEncrypted.UseVisualStyleBackColor = true;
             // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(230, 75);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(101, 23);
+            this.cancelButton.TabIndex = 6;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // AttributeEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 143);
+            this.ClientSize = new System.Drawing.Size(413, 116);
             this.Controls.Add(this.checkBoxEncrypted);
             this.Controls.Add(this.checkBoxCompressed);
             this.Controls.Add(this.cancelButton);
@@ -156,8 +156,8 @@
         public System.Windows.Forms.CheckBox checkBoxReadOnly;
         public System.Windows.Forms.CheckBox checkBoxHidden;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.CheckBox checkBoxCompressed;
         private System.Windows.Forms.CheckBox checkBoxEncrypted;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

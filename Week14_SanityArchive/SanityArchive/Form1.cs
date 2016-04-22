@@ -108,9 +108,10 @@ namespace SanityArchive
             }
             else
             {
-                AttributeEditorForm attributeEditorForm = new AttributeEditorForm();
                 string selectedItem = primaryPathTextBox.Text + primaryFileListBox.SelectedItem.ToString();
-                attributeEditorForm.TextBoxValue = selectedItem;
+                AttributeEditorForm attributeEditorForm = new AttributeEditorForm(selectedItem);
+                //attributeEditorForm.TextBoxValue = selectedItem;
+                
                 attributeEditorForm.ShowDialog();
             }
         }
