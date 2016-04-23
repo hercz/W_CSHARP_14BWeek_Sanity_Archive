@@ -25,15 +25,16 @@ namespace SanityArchive
             }
         }
 
-
-        public void SetPathTextBox(ListBox fileListBox,  TextBox pathTextBox)
+        public void SetPathTextBox(ListBox fileListBox, TextBox pathTextBox)
         {
-            CurrentPath = pathTextBox.Text + fileListBox.SelectedItem + "\\";            
-            pathTextBox.Text = CurrentPath;            
+            if (fileListBox.SelectedItem == null) return;
+            CurrentPath = pathTextBox.Text + fileListBox.SelectedItem + "\\";
+            pathTextBox.Text = CurrentPath;
         }
 
         public void ShowDirsAndFiles(ListBox fileListBox)
         {
+            if (fileListBox.SelectedItem == null) return;
             fileListBox.Items.Clear();
             try
             {
@@ -42,14 +43,13 @@ namespace SanityArchive
                 foreach (var dir in dirs)
                 {
                     string dirName = Path.GetFileName(dir);
-                    fileListBox.Items.Add(dirName);
+                    if (dirName != null) fileListBox.Items.Add(dirName);
                 }
-
                 string[] files = Directory.GetFiles(CurrentPath);
                 foreach (var file in files)
                 {
                     string fileName = Path.GetFileName(file);
-                    fileListBox.Items.Add(fileName);
+                    if (fileName != null) fileListBox.Items.Add(fileName);
                 }
             }
             catch (Exception er)
@@ -58,9 +58,9 @@ namespace SanityArchive
                 MessageBox.Show(er.Message);
             }
         }
-
         public void SetPathTextBoxFromComboBox(ComboBox selectedDrive, TextBox pathTextBox)
         {
+
             pathTextBox.Text = selectedDrive.SelectedItem.ToString();
         }
 
@@ -74,6 +74,7 @@ namespace SanityArchive
 
         public void FillFileListBoxFromComboBox(ListBox fileListBox, ComboBox driveComboBox)
         {
+            fileListBox.Items.Clear();
             try
             {
                 string[] dirs = Directory.GetDirectories(Drives[driveComboBox.SelectedIndex]);
@@ -81,14 +82,14 @@ namespace SanityArchive
                 foreach (var dir in dirs)
                 {
                     string dirName = Path.GetFileName(dir);
-                    fileListBox.Items.Add(dirName);
+                    if (dirName != null) fileListBox.Items.Add(dirName);
                 }
 
                 string[] files = Directory.GetFiles(Drives[driveComboBox.SelectedIndex]);
                 foreach (var file in files)
                 {
                     string fileName = Path.GetFileName(file);
-                    fileListBox.Items.Add(fileName);
+                    if (fileName != null) fileListBox.Items.Add(fileName);
                 }
             }
             catch (Exception er)
