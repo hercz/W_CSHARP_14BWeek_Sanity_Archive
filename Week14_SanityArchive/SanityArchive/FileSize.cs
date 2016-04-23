@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SanityArchive
@@ -9,9 +11,7 @@ namespace SanityArchive
         public TextBox SizeTextBox { get; }
         public TextBox PathTextBox { get; }
         public string FilePath { get; private set; }
-        public string CurrentPath { get; set; }
-        public long SizeOfFileInByte { get; private set; }
-        public double SizeOfFileInKbMb { get; private set; }
+        public List<string> CurrentPaths { get; set; }
 
         public FileSize(TextBox pathTextBox,ListBox fileListBox, TextBox sizeTextBox)
         {
@@ -23,38 +23,52 @@ namespace SanityArchive
         public void FillFileSizeTextBox()
         {
             SizeTextBox.Clear();
-            CurrentPath = PathTextBox.Text + FileListBox.SelectedItem;
-            if (File.Exists(CurrentPath))
+            CurrentPaths = new List<string>();
+            long allsize = 0; 
+            foreach (var item in FileListBox.SelectedItems)
             {
-                GetFileSize(CurrentPath);
+                CurrentPaths.Add(PathTextBox.Text + item);
             }
-            else
+            foreach (var path in CurrentPaths)
             {
-                SizeTextBox.Clear();
+                if (File.Exists(path))
+                {
+                    allsize += GetFileSize(path);
+                }
+                else
+                {
+                    SizeTextBox.Clear();
+                }
             }
+            GetSizeInValue(allsize);
         }
 
-        private void GetFileSize(string path)
+        private long GetFileSize(string path)
         {
             FilePath = path;
             FileInfo file = new FileInfo(FilePath);
-            SizeOfFileInByte = file.Length;
-            if (SizeOfFileInByte < 1024)
+            long size = file.Length;
+            return size;
+        }
+
+        private void GetSizeInValue(long allsize)
+        {
+            if (allsize < 1024)
             {
-                SizeTextBox.Text = $"{SizeOfFileInByte} byte";
+                SizeTextBox.Text = $"{allsize} byte";
             }
-            else if (SizeOfFileInByte < 1048576)
+            else if (allsize < 1048576)
             {
-                SizeOfFileInKbMb = SizeOfFileInByte / 1024f;
-                SizeTextBox.Text = $"{SizeOfFileInKbMb:F2} KB";
+                var sizeInKb = Convert.ToDouble(allsize);
+                sizeInKb = sizeInKb / 1024;
+                SizeTextBox.Text = $"{sizeInKb:F2} KB";
             }
             else
             {
-                SizeOfFileInKbMb = SizeOfFileInByte / 1024f / 1024f;
-                SizeTextBox.Text = $"{SizeOfFileInKbMb:F2} MB";
+                var sizeInMb = Convert.ToDouble(allsize);
+                sizeInMb = sizeInMb / 1024 / 1024;
+                SizeTextBox.Text = $"{sizeInMb:F2} MB";
             }
-
-
         }
     }
 }

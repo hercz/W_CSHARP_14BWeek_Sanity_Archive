@@ -53,16 +53,16 @@ namespace SanityArchive
 
         private void primaryFileListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedItem = primaryFileListBox.SelectedItem.ToString().ToLower();
+            //string selectedItem = primaryFileListBox.SelectedItem.ToString().ToLower();
 
-            if (selectedItem.EndsWith(".enc"))
-            {
-                encryptionButton.Text = "Decryption";
-            }
-            else
-            {
-                encryptionButton.Text = "Encryption";
-            }
+            //if (selectedItem.EndsWith(".enc"))
+            //{
+            //    encryptionButton.Text = "Decryption";
+            //}
+            //else
+            //{
+            //    encryptionButton.Text = "Encryption";
+            //}
             SizeOfFile.FillFileSizeTextBox();
         }
 
