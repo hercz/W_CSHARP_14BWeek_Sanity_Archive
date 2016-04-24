@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Net;
 using System.Windows.Forms;
 
 namespace SanityArchive
@@ -22,30 +24,34 @@ namespace SanityArchive
             File.Copy(_sourcePath, destFilePath, true);
         }
 
-        public void CopyDirectory()
+        public void CopyDirectory(string sourceDirName, string destDirName)
         {
-            string fileName;
-            string destFilePath;
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
 
-            if (!Directory.Exists(_targetPath))
+            if (!dir.Exists)
             {
-                Directory.CreateDirectory(_targetPath);
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
             }
 
-            if (Directory.Exists(_sourcePath))
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            if (!Directory.Exists(destDirName))
             {
-                string[] files = Directory.GetFiles(_sourcePath);
-
-                foreach (string s in files)
-                {
-                    fileName = Path.GetFileName(s);
-                    destFilePath = Path.Combine(_targetPath, fileName);
-                    File.Copy(s, destFilePath, true);
-                }
+                Directory.CreateDirectory(destDirName);
             }
-            else
+
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
             {
-                MessageBox.Show("Source path does not exist!");
+                string temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, false);
+            }
+
+            foreach (DirectoryInfo subdir in dirs)
+            {
+                string temppath = Path.Combine(destDirName, subdir.Name);
+                CopyDirectory(subdir.FullName, temppath);
             }
         }
 
