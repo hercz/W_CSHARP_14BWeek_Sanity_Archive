@@ -7,62 +7,96 @@ namespace SanityArchive
 {
     public class CopyAndMove
     {
-        private string _sourcePath;
-        private string _targetPath;
-
-        public CopyAndMove(string sourcePath, string targetPath)
+        public CopyAndMove()
         {
-            _sourcePath = sourcePath;
-            _targetPath = targetPath;
+            
         }
 
-        public void CopyFile()
+        public void CopyFile(string sourceFilePath, string targetFilePath)
         {
-            string fileName = Path.GetFileName(_sourcePath);
-            string destFilePath = Path.Combine(_targetPath, fileName);
+            string fileName = Path.GetFileName(sourceFilePath);
+            string destFilePath = Path.Combine(targetFilePath, fileName);
 
-            File.Copy(_sourcePath, destFilePath, true);
+            File.Copy(sourceFilePath, destFilePath, true);
         }
 
         public void CopyDirectory(string sourceDirName, string destDirName)
         {
-            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-
-            if (!dir.Exists)
+            try
             {
-                throw new DirectoryNotFoundException(
-                    "Source directory does not exist or could not be found: "
-                    + sourceDirName);
+                DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+                if (!dir.Exists)
+                {
+                    throw new DirectoryNotFoundException(
+                        "Source directory does not exist or could not be found: "
+                        + sourceDirName);
+                }
+
+                DirectoryInfo[] dirs = dir.GetDirectories();
+                if (!Directory.Exists(destDirName))
+                {
+                    Directory.CreateDirectory(destDirName);
+                }
+                FileInfo[] files = dir.GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    string temppath = Path.Combine(destDirName, file.Name);
+                    file.CopyTo(temppath, false);
+                }
+
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+                    CopyDirectory(subdir.FullName, temppath);
+                }
             }
-
-            DirectoryInfo[] dirs = dir.GetDirectories();
-            if (!Directory.Exists(destDirName))
+            catch (Exception e)
             {
-                Directory.CreateDirectory(destDirName);
-            }
-
-            FileInfo[] files = dir.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                string temppath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, false);
-            }
-
-            foreach (DirectoryInfo subdir in dirs)
-            {
-                string temppath = Path.Combine(destDirName, subdir.Name);
-                CopyDirectory(subdir.FullName, temppath);
+                MessageBox.Show(e.Message);
             }
         }
 
-        public void MoveFile()
+        public void MoveFile(string sourceFilePath, string targetFilePath)
         {
-            File.Move(_sourcePath, _targetPath);
+            CopyFile(sourceFilePath, targetFilePath);
+            DeleteFunction(sourceFilePath);
         }
 
-        public void MoveDirectory()
+        public void MoveDirectory(string sourceDirName, string destDirName)
         {
-            Directory.Move(_sourcePath, _targetPath);
+            CopyDirectory(sourceDirName, destDirName);
+            DeleteFunction(sourceDirName);
+        }
+
+        public void DeleteFunction(string sourcePath)
+        {
+            FileAttributes fa = File.GetAttributes(sourcePath);
+
+            if (fa == FileAttributes.Directory)
+            {
+                DirectoryInfo di = new DirectoryInfo(sourcePath);
+                try
+                {
+                    di.Delete(true);
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            else
+            {
+                FileInfo fi = new FileInfo(sourcePath);
+                try
+                {
+                    fi.Delete();
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
         }
     }
 }
