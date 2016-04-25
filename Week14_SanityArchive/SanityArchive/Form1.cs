@@ -194,36 +194,12 @@ namespace SanityArchive
 
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
-
-            primaryFileListBox.SelectionMode = SelectionMode.MultiExtended;
-
-            for (int i = 0; i < primaryFileListBox.Items.Count; i++)
-            {
-                primaryFileListBox.SetSelected(i, false);
-            }
-
-
             string searchString = searchTextBox.Text;
 
-            int x = -1;
-            if (searchString.Length != 0)
-            {
-                do
-                {
-                    x = primaryFileListBox.FindString(searchString, x);
-                    if (x != -1)
-                    {
-                        if (primaryFileListBox.SelectedIndices.Count > 0)
-                        {
-                            if (x == primaryFileListBox.SelectedIndices[0])
-                                return;
-                        }
-                        primaryFileListBox.SetSelected(x, true);
-                    }
-
-                } while (x != -1);
-            }
+           Search mySearch = new Search(primaryFileListBox, searchString);
 
         }
+
+
     }
 }
