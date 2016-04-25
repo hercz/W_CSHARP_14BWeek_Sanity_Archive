@@ -125,14 +125,14 @@ namespace SanityArchive
             if (encryptionButton.Text.Equals("Encryption"))
             {
                 encrypOrDecrypt.EncryptFile(@selectedItem, @selectedItem + ".enc");
-                primaryFileListBox.Items.Clear();
                 FileOperationHandler.ShowDirsAndFiles(primaryFileListBox);
+
+
 
             }
             else
             {
                 encrypOrDecrypt.DecryptFile(@selectedItem, @selectedItem.Substring(0, (selectedItem.Length - 4)));
-                primaryFileListBox.Items.Clear();
                 FileOperationHandler.ShowDirsAndFiles(primaryFileListBox);
             }
         }
