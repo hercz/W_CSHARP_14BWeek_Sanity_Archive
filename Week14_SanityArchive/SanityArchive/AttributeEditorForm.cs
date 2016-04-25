@@ -13,9 +13,12 @@ namespace SanityArchive
 {
     public partial class AttributeEditorForm : Form
     {
-
+        SanityArchive mainForm = new SanityArchive();
+        FileOperationHandler fileHandler = new FileOperationHandler();
+        
         private string originalFileName;
         private string newFileName;
+        
 
         public AttributeEditorForm()
         {
@@ -63,6 +66,8 @@ namespace SanityArchive
         private void saveButton_Click(object sender, EventArgs e)
         {
             File.Move(originalFileName, newFileName);
+            //fileHandler.FillFileListBoxFromComboBox(fileHandler.PrimaryFileBox, fileHandler.PrimaryDriveComboBox);
+            mainForm.primaryFileListBox.Update();
             Close();
         }
 
