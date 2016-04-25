@@ -34,7 +34,8 @@ namespace SanityArchive
 
         public void ShowDirsAndFiles(ListBox fileListBox)
         {
-            if (fileListBox.SelectedItem == null) return;
+            
+            if (fileListBox.SelectedItem == null) return;           
             fileListBox.Items.Clear();
             try
             {
@@ -54,8 +55,11 @@ namespace SanityArchive
             }
             catch (Exception er)
             {
-                fileListBox.Items.Clear();
-                MessageBox.Show(er.Message);
+                if (!IfTextFileOpenTheFile())
+                {
+                    fileListBox.Items.Clear();
+                    MessageBox.Show(er.Message);
+                }              
             }
         }
         public void SetPathTextBoxFromComboBox(ComboBox selectedDrive, TextBox pathTextBox)
@@ -97,6 +101,15 @@ namespace SanityArchive
                 fileListBox.Items.Clear();
                 MessageBox.Show(er.Message);
             }
+        }
+        private bool IfTextFileOpenTheFile()
+        {
+            if (CurrentPath.EndsWith(@".txt\"))
+            {
+                System.Diagnostics.Process.Start(CurrentPath);
+                return true;
+            }
+            return false;
         }
     }
 }

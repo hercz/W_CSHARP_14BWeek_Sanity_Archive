@@ -12,6 +12,7 @@ namespace SanityArchive
         public FileSize SizeOfFile { get; set; }
         public FileOperationHandler FileOperationHandler { get; set; }
         private Archiving ar = new Archiving();
+        CopyAndMove cam = new CopyAndMove();
 
         public SanityArchive()
         {
@@ -125,14 +126,14 @@ namespace SanityArchive
             if (encryptionButton.Text.Equals("Encryption"))
             {
                 encrypOrDecrypt.EncryptFile(@selectedItem, @selectedItem + ".enc");
-                primaryFileListBox.Items.Clear();
                 FileOperationHandler.ShowDirsAndFiles(primaryFileListBox);
+
+
 
             }
             else
             {
                 encrypOrDecrypt.DecryptFile(@selectedItem, @selectedItem.Substring(0, (selectedItem.Length - 4)));
-                primaryFileListBox.Items.Clear();
                 FileOperationHandler.ShowDirsAndFiles(primaryFileListBox);
             }
         }
@@ -140,23 +141,25 @@ namespace SanityArchive
         private void copyButton_Click(object sender, EventArgs e)
         {
             List<string> selectedItems = new List<string>();
+            string destFilePath = secondaryPathTextBox.Text;
+
             foreach (var item in primaryFileListBox.SelectedItems)
             {
                 string selectedItemPath = Path.Combine(primaryPathTextBox.Text, item.ToString());
                 selectedItems.Add(selectedItemPath);
             }
-            string destFilePath = secondaryPathTextBox.Text;
             foreach (var item in selectedItems)
             {
                 FileAttributes fa = File.GetAttributes(item);
-                CopyAndMove cam = new CopyAndMove(item, destFilePath);
+                string destDirPath = Path.Combine(destFilePath, Path.GetFileName(item));
+
                 if (fa == FileAttributes.Directory)
                 {
-                    cam.CopyDirectory();
+                    cam.CopyDirectory(item, destDirPath);
                 }
                 else
                 {
-                    cam.CopyFile();
+                    cam.CopyFile(item, destFilePath);
                 }
             }
 
@@ -165,25 +168,39 @@ namespace SanityArchive
         private void moveButton_Click(object sender, EventArgs e)
         {
             List<string> selectedItems = new List<string>();
+            string destFilePath = secondaryPathTextBox.Text;
+
             foreach (var item in primaryFileListBox.SelectedItems)
             {
                 string selectedItemPath = Path.Combine(primaryPathTextBox.Text, item.ToString());
                 selectedItems.Add(selectedItemPath);
             }
-            string destFilePath = secondaryPathTextBox.Text;
             foreach (var item in selectedItems)
             {
                 FileAttributes fa = File.GetAttributes(item);
-                CopyAndMove cam = new CopyAndMove(item, destFilePath);
+                string destDirPath = Path.Combine(destFilePath, Path.GetFileName(item));
+
                 if (fa == FileAttributes.Directory)
                 {
-                    cam.MoveDirectory();
+                    cam.MoveDirectory(item, destDirPath);
                 }
                 else
                 {
-                    cam.MoveFile();
+                    cam.MoveFile(item, destFilePath);
                 }
             }
         }
+
+        
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string searchString = searchTextBox.Text;
+
+           Search mySearch = new Search(primaryFileListBox, searchString);
+
+        }
+
+
     }
 }
