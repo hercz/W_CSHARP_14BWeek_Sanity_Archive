@@ -194,10 +194,11 @@
             // 
             // searchTextBox
             // 
-            this.searchTextBox.Location = new System.Drawing.Point(95, 90);
+            this.searchTextBox.Location = new System.Drawing.Point(95, 91);
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(250, 20);
             this.searchTextBox.TabIndex = 21;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
             // label3
             // 

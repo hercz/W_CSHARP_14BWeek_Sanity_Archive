@@ -34,6 +34,7 @@ namespace SanityArchive
 
         public void ShowDirsAndFiles(ListBox fileListBox)
         {
+            
             if (fileListBox.SelectedItem == null) return;           
             fileListBox.Items.Clear();
             try
