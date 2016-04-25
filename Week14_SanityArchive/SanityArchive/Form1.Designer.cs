@@ -54,7 +54,7 @@
             // 
             this.DriverLabel.AutoSize = true;
             this.DriverLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DriverLabel.Location = new System.Drawing.Point(30, 15);
+            this.DriverLabel.Location = new System.Drawing.Point(14, 10);
             this.DriverLabel.Name = "DriverLabel";
             this.DriverLabel.Size = new System.Drawing.Size(44, 16);
             this.DriverLabel.TabIndex = 0;
@@ -63,7 +63,7 @@
             // primaryDriverComboBox
             // 
             this.primaryDriverComboBox.FormattingEnabled = true;
-            this.primaryDriverComboBox.Location = new System.Drawing.Point(95, 12);
+            this.primaryDriverComboBox.Location = new System.Drawing.Point(64, 8);
             this.primaryDriverComboBox.Name = "primaryDriverComboBox";
             this.primaryDriverComboBox.Size = new System.Drawing.Size(250, 21);
             this.primaryDriverComboBox.TabIndex = 1;
@@ -72,19 +72,19 @@
             // primaryFileListBox
             // 
             this.primaryFileListBox.FormattingEnabled = true;
-            this.primaryFileListBox.Location = new System.Drawing.Point(95, 128);
+            this.primaryFileListBox.Location = new System.Drawing.Point(64, 128);
             this.primaryFileListBox.Name = "primaryFileListBox";
             this.primaryFileListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.primaryFileListBox.Size = new System.Drawing.Size(250, 251);
+            this.primaryFileListBox.Size = new System.Drawing.Size(250, 238);
             this.primaryFileListBox.TabIndex = 2;
             this.primaryFileListBox.SelectedIndexChanged += new System.EventHandler(this.primaryFileListBox_SelectedIndexChanged);
             this.primaryFileListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.primaryFileListBox_DoubleClick);
             // 
             // compressButton
             // 
-            this.compressButton.Location = new System.Drawing.Point(375, 301);
+            this.compressButton.Location = new System.Drawing.Point(320, 263);
             this.compressButton.Name = "compressButton";
-            this.compressButton.Size = new System.Drawing.Size(94, 35);
+            this.compressButton.Size = new System.Drawing.Size(94, 28);
             this.compressButton.TabIndex = 3;
             this.compressButton.Text = "Compress";
             this.compressButton.UseVisualStyleBackColor = true;
@@ -92,9 +92,9 @@
             // 
             // encryptionButton
             // 
-            this.encryptionButton.Location = new System.Drawing.Point(375, 258);
+            this.encryptionButton.Location = new System.Drawing.Point(320, 227);
             this.encryptionButton.Name = "encryptionButton";
-            this.encryptionButton.Size = new System.Drawing.Size(94, 37);
+            this.encryptionButton.Size = new System.Drawing.Size(94, 30);
             this.encryptionButton.TabIndex = 4;
             this.encryptionButton.Text = "Encryption";
             this.encryptionButton.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@
             // 
             this.driverLabel2.AutoSize = true;
             this.driverLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.driverLabel2.Location = new System.Drawing.Point(427, 51);
+            this.driverLabel2.Location = new System.Drawing.Point(370, 10);
             this.driverLabel2.Name = "driverLabel2";
             this.driverLabel2.Size = new System.Drawing.Size(44, 16);
             this.driverLabel2.TabIndex = 7;
@@ -113,26 +113,26 @@
             // secondaryDriveComboBox
             // 
             this.secondaryDriveComboBox.FormattingEnabled = true;
-            this.secondaryDriveComboBox.Location = new System.Drawing.Point(498, 50);
+            this.secondaryDriveComboBox.Location = new System.Drawing.Point(420, 9);
             this.secondaryDriveComboBox.Name = "secondaryDriveComboBox";
-            this.secondaryDriveComboBox.Size = new System.Drawing.Size(268, 21);
+            this.secondaryDriveComboBox.Size = new System.Drawing.Size(250, 21);
             this.secondaryDriveComboBox.TabIndex = 9;
             this.secondaryDriveComboBox.SelectedIndexChanged += new System.EventHandler(this.secondaryDriveComboBox_SelectedIndexChanged);
             // 
             // SecondaryFileListBox
             // 
             this.SecondaryFileListBox.FormattingEnabled = true;
-            this.SecondaryFileListBox.Location = new System.Drawing.Point(498, 128);
+            this.SecondaryFileListBox.Location = new System.Drawing.Point(420, 128);
             this.SecondaryFileListBox.Name = "SecondaryFileListBox";
-            this.SecondaryFileListBox.Size = new System.Drawing.Size(268, 251);
+            this.SecondaryFileListBox.Size = new System.Drawing.Size(250, 238);
             this.SecondaryFileListBox.TabIndex = 11;
             this.SecondaryFileListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SecondaryFileListBox_DoubleClick);
             // 
             // copyButton
             // 
-            this.copyButton.Location = new System.Drawing.Point(375, 219);
+            this.copyButton.Location = new System.Drawing.Point(320, 195);
             this.copyButton.Name = "copyButton";
-            this.copyButton.Size = new System.Drawing.Size(94, 33);
+            this.copyButton.Size = new System.Drawing.Size(94, 26);
             this.copyButton.TabIndex = 14;
             this.copyButton.Text = "Copy";
             this.copyButton.UseVisualStyleBackColor = true;
@@ -140,9 +140,9 @@
             // 
             // moveButton
             // 
-            this.moveButton.Location = new System.Drawing.Point(375, 180);
+            this.moveButton.Location = new System.Drawing.Point(320, 163);
             this.moveButton.Name = "moveButton";
-            this.moveButton.Size = new System.Drawing.Size(94, 33);
+            this.moveButton.Size = new System.Drawing.Size(94, 26);
             this.moveButton.TabIndex = 15;
             this.moveButton.Text = "Move";
             this.moveButton.UseVisualStyleBackColor = true;
@@ -150,9 +150,9 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(375, 141);
+            this.editButton.Location = new System.Drawing.Point(320, 131);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(94, 33);
+            this.editButton.Size = new System.Drawing.Size(94, 26);
             this.editButton.TabIndex = 16;
             this.editButton.Text = "Edit";
             this.editButton.UseVisualStyleBackColor = true;
@@ -162,7 +162,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(30, 51);
+            this.label1.Location = new System.Drawing.Point(23, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 16);
             this.label1.TabIndex = 17;
@@ -172,7 +172,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(427, 91);
+            this.label2.Location = new System.Drawing.Point(379, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 16);
             this.label2.TabIndex = 18;
@@ -180,23 +180,23 @@
             // 
             // primaryPathTextBox
             // 
-            this.primaryPathTextBox.Location = new System.Drawing.Point(95, 53);
+            this.primaryPathTextBox.Location = new System.Drawing.Point(64, 49);
             this.primaryPathTextBox.Name = "primaryPathTextBox";
             this.primaryPathTextBox.Size = new System.Drawing.Size(250, 20);
             this.primaryPathTextBox.TabIndex = 19;
             // 
             // secondaryPathTextBox
             // 
-            this.secondaryPathTextBox.Location = new System.Drawing.Point(498, 90);
+            this.secondaryPathTextBox.Location = new System.Drawing.Point(420, 50);
             this.secondaryPathTextBox.Name = "secondaryPathTextBox";
-            this.secondaryPathTextBox.Size = new System.Drawing.Size(268, 20);
+            this.secondaryPathTextBox.Size = new System.Drawing.Size(250, 20);
             this.secondaryPathTextBox.TabIndex = 20;
             // 
             // searchTextBox
             // 
-            this.searchTextBox.Location = new System.Drawing.Point(95, 91);
+            this.searchTextBox.Location = new System.Drawing.Point(64, 89);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(250, 20);
+            this.searchTextBox.Size = new System.Drawing.Size(606, 20);
             this.searchTextBox.TabIndex = 21;
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
@@ -204,7 +204,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(30, 92);
+            this.label3.Location = new System.Drawing.Point(7, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 16);
             this.label3.TabIndex = 22;
@@ -212,15 +212,15 @@
             // 
             // fileSize_Textbox
             // 
-            this.fileSize_Textbox.Location = new System.Drawing.Point(13, 359);
+            this.fileSize_Textbox.Location = new System.Drawing.Point(358, 331);
             this.fileSize_Textbox.Name = "fileSize_Textbox";
-            this.fileSize_Textbox.Size = new System.Drawing.Size(68, 20);
+            this.fileSize_Textbox.Size = new System.Drawing.Size(56, 20);
             this.fileSize_Textbox.TabIndex = 23;
             // 
             // fileSize_label
             // 
             this.fileSize_label.AutoSize = true;
-            this.fileSize_label.Location = new System.Drawing.Point(12, 343);
+            this.fileSize_label.Location = new System.Drawing.Point(320, 334);
             this.fileSize_label.Name = "fileSize_label";
             this.fileSize_label.Size = new System.Drawing.Size(30, 13);
             this.fileSize_label.TabIndex = 24;
@@ -228,9 +228,9 @@
             // 
             // buttonDecompress
             // 
-            this.buttonDecompress.Location = new System.Drawing.Point(375, 344);
+            this.buttonDecompress.Location = new System.Drawing.Point(320, 297);
             this.buttonDecompress.Name = "buttonDecompress";
-            this.buttonDecompress.Size = new System.Drawing.Size(94, 35);
+            this.buttonDecompress.Size = new System.Drawing.Size(94, 28);
             this.buttonDecompress.TabIndex = 25;
             this.buttonDecompress.Text = "Decompress";
             this.buttonDecompress.UseVisualStyleBackColor = true;
@@ -240,7 +240,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 407);
+            this.ClientSize = new System.Drawing.Size(689, 386);
             this.Controls.Add(this.buttonDecompress);
             this.Controls.Add(this.fileSize_label);
             this.Controls.Add(this.fileSize_Textbox);
