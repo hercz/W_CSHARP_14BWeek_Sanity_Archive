@@ -42,7 +42,7 @@ namespace SanityArchive
                 foreach (FileInfo file in files)
                 {
                     string temppath = Path.Combine(destDirName, file.Name);
-                    file.CopyTo(temppath, false);
+                    file.CopyTo(temppath, true);
                 }
 
                 foreach (DirectoryInfo subdir in dirs)
