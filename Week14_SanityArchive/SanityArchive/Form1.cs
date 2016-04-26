@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.IO;
+using System.IO.Compression;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
@@ -11,7 +12,6 @@ namespace SanityArchive
     {
         public FileSize SizeOfFile { get; set; }
         public FileOperationHandler FileOperationHandler { get; set; }
-        private Archiving ar = new Archiving();
         CopyAndMove cam = new CopyAndMove();
 
         public SanityArchive()
@@ -70,36 +70,42 @@ namespace SanityArchive
 
         private void compressButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            string path = string.Empty;
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                path = fbd.SelectedPath;
-            }
-            DirectoryInfo dInfo = new DirectoryInfo(path);
-            foreach (FileInfo fInfo in dInfo.GetFiles())
-            {
-                ar.Compress(fInfo);
-            }
-            MessageBox.Show("Compression Finished!");
+            string zipPath = secondaryPathTextBox.Text + "result.zip";
+            string selectedItem = primaryPathTextBox.Text + primaryFileListBox.SelectedItem.ToString();
 
-           
+            try
+            {
+                using (ZipArchive archive = ZipFile.Open(zipPath, ZipArchiveMode.Update))
+                {
+                    archive.CreateEntryFromFile(selectedItem, primaryFileListBox.SelectedItem.ToString());
+                }
+                MessageBox.Show("Compression sucessful!");
+            }
+            catch (Exception er)
+            {
+
+                MessageBox.Show(er.Message);
+            }
         }
 
         private void buttonDecompress_Click_1(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            string path = string.Empty;
-            if (fbd.ShowDialog() == DialogResult.OK)
+            string extractPath = secondaryPathTextBox.Text;
+            string selectedItem = primaryPathTextBox.Text + primaryFileListBox.SelectedItem.ToString();
+
+            try
             {
-                path = fbd.SelectedPath;
+                using (ZipArchive archive = ZipFile.Open(selectedItem, ZipArchiveMode.Update))
+                {
+                    archive.ExtractToDirectory(extractPath);
+                }
+                MessageBox.Show("Decompression sucessful!");
             }
-            DirectoryInfo dInfo = new DirectoryInfo(path);
-            foreach (FileInfo fInfo in dInfo.GetFiles())
+            catch (Exception er)
             {
-                ar.Decompress(fInfo);
+
+                MessageBox.Show(er.Message);
             }
-            MessageBox.Show("Decompressing Finished!");
         }
 
         private void editButton_Click(object sender, EventArgs e)
