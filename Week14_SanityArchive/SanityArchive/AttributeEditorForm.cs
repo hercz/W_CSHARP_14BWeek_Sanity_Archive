@@ -15,7 +15,6 @@ namespace SanityArchive
     {
         SanityArchive mainForm = new SanityArchive();
         FileOperationHandler fileHandler = new FileOperationHandler();
-        
         private string originalFileName;
         private string newFileName;
         
@@ -25,11 +24,11 @@ namespace SanityArchive
             InitializeComponent();
         }
 
-        public AttributeEditorForm(string filePath)
+        public AttributeEditorForm(string filePath, string fileName)
         {
             InitializeComponent();
-            textBoxFileName.Text = filePath;
-            originalFileName = textBoxFileName.Text;
+            textBoxFileName.Text = fileName;
+            originalFileName = filePath + fileName;
 
             if (File.GetAttributes(originalFileName) == FileAttributes.Hidden)
             {
