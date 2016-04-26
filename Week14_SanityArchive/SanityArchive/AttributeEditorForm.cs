@@ -50,13 +50,7 @@ namespace SanityArchive
                 checkBoxEncrypted.Checked = true;
             }
         }
-        /*
-        public string TextBoxValue
-        {
-            get { return textBoxFileName.Text; }
-            set { textBoxFileName.Text = value; }
-        }
-        */
+
         private void textBoxFileName_TextChanged(object sender, EventArgs e)
 
         {

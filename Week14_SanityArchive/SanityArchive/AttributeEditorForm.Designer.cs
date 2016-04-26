@@ -100,6 +100,7 @@
             // checkBoxCompressed
             // 
             this.checkBoxCompressed.AutoSize = true;
+            this.checkBoxCompressed.Enabled = false;
             this.checkBoxCompressed.Location = new System.Drawing.Point(235, 43);
             this.checkBoxCompressed.Name = "checkBoxCompressed";
             this.checkBoxCompressed.Size = new System.Drawing.Size(84, 17);
@@ -110,6 +111,7 @@
             // checkBoxEncrypted
             // 
             this.checkBoxEncrypted.AutoSize = true;
+            this.checkBoxEncrypted.Enabled = false;
             this.checkBoxEncrypted.Location = new System.Drawing.Point(327, 43);
             this.checkBoxEncrypted.Name = "checkBoxEncrypted";
             this.checkBoxEncrypted.Size = new System.Drawing.Size(74, 17);
