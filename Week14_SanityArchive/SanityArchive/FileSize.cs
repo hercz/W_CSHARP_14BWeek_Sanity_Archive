@@ -1,19 +1,47 @@
-﻿using System;
+﻿#region File Header
+/*[ Compilation unit ----------------------------------------------------------
+
+   Component       : Compute the size of selected or multiple selected files
+
+   Name            : FileSize.cs
+
+   Last Author     : Herczku Mihály Balázs
+
+   Language        : C#
+
+   Creation Date   :  2016.04.19.
+
+   Description     : This class handle to compute the size of a selected file.
+
+
+               Copyright (C) Codecool Kft 2016 All Rights Reserved
+
+-----------------------------------------------------------------------------*/
+/*] END */
+#endregion File Header
+
+#region Used Namespaces ---------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+#endregion Used Namespaces --
+
 
 namespace SanityArchive
 {
     public class FileSize
     {
+        #region Public Propertys ---------------------------------------------------------------
         public ListBox FileListBox { get; }
         public TextBox SizeTextBox { get; }
         public TextBox PathTextBox { get; }
         public string FilePath { get; private set; }
         public List<string> CurrentPaths { get; set; }
+        #endregion Public Propertys -----------------------------------------------------------------------
 
-        public FileSize(TextBox pathTextBox,ListBox fileListBox, TextBox sizeTextBox)
+        #region Public Contstructor and methods ---------------------------------------------------------------
+        public FileSize(TextBox pathTextBox, ListBox fileListBox, TextBox sizeTextBox)
         {
             PathTextBox = pathTextBox;
             FileListBox = fileListBox;
@@ -24,7 +52,7 @@ namespace SanityArchive
         {
             SizeTextBox.Clear();
             CurrentPaths = new List<string>();
-            long allsize = 0; 
+            long allsize = 0;
             foreach (var item in FileListBox.SelectedItems)
             {
                 CurrentPaths.Add(PathTextBox.Text + item);
@@ -42,7 +70,9 @@ namespace SanityArchive
             }
             GetSizeInValue(allsize);
         }
-
+        #endregion Public Contstructor and methods -----------------------------------------------------------------------
+        
+        #region Private methods ---------------------------------------------------------------
         private long GetFileSize(string path)
         {
             FilePath = path;
@@ -70,6 +100,8 @@ namespace SanityArchive
                 SizeTextBox.Text = $"{sizeInMb:F2} MB";
             }
         }
+        #endregion Private methods -----------------------------------------------------------------------
+
     }
 }
 
