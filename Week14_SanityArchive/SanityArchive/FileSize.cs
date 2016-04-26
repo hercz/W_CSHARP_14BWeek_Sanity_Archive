@@ -38,8 +38,7 @@ namespace SanityArchive
         public TextBox PathTextBox { get; }
         public string FilePath { get; private set; }
         public List<string> CurrentPaths { get; set; }
-        #endregion PPublic Propertys -----------------------------------------------------------------------
-
+        #endregion Public Propertys -----------------------------------------------------------------------
 
         #region Public Contstructor and methods ---------------------------------------------------------------
         public FileSize(TextBox pathTextBox, ListBox fileListBox, TextBox sizeTextBox)
@@ -71,7 +70,9 @@ namespace SanityArchive
             }
             GetSizeInValue(allsize);
         }
-
+        #endregion Public Contstructor and methods -----------------------------------------------------------------------
+        
+        #region Private methods ---------------------------------------------------------------
         private long GetFileSize(string path)
         {
             FilePath = path;
@@ -99,7 +100,8 @@ namespace SanityArchive
                 SizeTextBox.Text = $"{sizeInMb:F2} MB";
             }
         }
-        #endregion Public Contstructor and methods -----------------------------------------------------------------------
+        #endregion Private methods -----------------------------------------------------------------------
+
     }
 }
 
