@@ -79,7 +79,7 @@ namespace SanityArchive
                 {
                     archive.CreateEntryFromFile(selectedItem, primaryFileListBox.SelectedItem.ToString());
                 }
-                MessageBox.Show("Compression sucessful!");
+                MessageBox.Show("Compression successful!");
             }
             catch (Exception er)
             {
@@ -99,7 +99,7 @@ namespace SanityArchive
                 {
                     archive.ExtractToDirectory(extractPath);
                 }
-                MessageBox.Show("Decompression sucessful!");
+                MessageBox.Show("Decompression successful!");
             }
             catch (Exception er)
             {
